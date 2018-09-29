@@ -1,0 +1,13 @@
+With my virtual environment activated, 
+'pip install Django==1.11.9' simply installed Django version 1.11.9 and pytz from 05/2018.
+'pip list' lists all packages currently installed and their version.
+'deactivate' deactivates my Python 3 virtual environment.
+'pip3 list' lists ALL packages and versions, not just Python 3 related packages.
+'source py3Env/bin/activate' reactivates my Python 3 virtual environment.
+'pip install Django==1.11.9' for a second time returns that requirement already satisfied for the package, and nothing is installed or overwritten.
+'pip freeze' returns Django==1.11.9 and pytz==2018.5. It seems to return a standard requirement format of the pip list call, excluding editables/packages pip depends on.
+'pip freeze > requirements.txt' outputs a txt file to my current working directory containing the 'pip freeze' output.
+'pip uninstall Django' uninstalls the Django package.
+'pip show Django' did nothing.
+'pip search Flask' searches the pip library for all Flask packages and outputs them with version and a brief description.
+
