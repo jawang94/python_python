@@ -33,10 +33,11 @@ students = [
 
 
 def loopDict(x):
-    for i in range(0, len(students)):
-        print(
-            f"first_name - {students[i]['first_name']}, last_name - {students[i]['last_name']}")
-
+  for i in range(len(x)):
+    str = ""
+    for key, value in x[i].items():
+      str += f"{key} - {value}, "
+    print(str)
 
 loopDict(students)
 
@@ -73,5 +74,3 @@ def printDojoInfo(x):
 
 
 printDojoInfo(dojo)
-
-
