@@ -31,10 +31,12 @@ students = [
     {'first_name': 'KB', 'last_name': 'Tonel'}
 ]
 
+
 def loopDict(x):
     for i in range(0, len(students)):
         print(
             f"first_name - {students[i]['first_name']}, last_name - {students[i]['last_name']}")
+
 
 loopDict(students)
 
@@ -46,11 +48,30 @@ students = [
     {'first_name': 'KB', 'last_name': 'Tonel'}
 ]
 
+
 def iterateDictionary2(key, someDict):
-    for i in range(0,len(someDict)):
-      print(someDict[i][key])
+    for i in range(0, len(someDict)):
+        print(someDict[i][key])
+
 
 iterateDictionary2('first_name', students)
 
-#4
+# 4
+dojo = {
+    'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+    'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+
+
+def printDojoInfo(x):
+    print(f"{len(x['locations'])} LOCATIONS")
+    for i in range(0, len(x['locations'])):
+        print(x['locations'][i])
+    print(f"\n{len(x['instructors'])} INSTRUCTORS")
+    for j in range(0, len(x['instructors'])):
+        print(x['instructors'][j])
+
+
+printDojoInfo(dojo)
+
 
