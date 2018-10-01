@@ -34,7 +34,7 @@ students = [
 
 def loopDict(x):
   for i in range(len(x)):
-    str = ""
+        str = ""
     for key, value in x[i].items():
       str += f"{key} - {value}, "
     print(str)
