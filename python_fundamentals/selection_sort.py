@@ -23,4 +23,3 @@ def selectionSort2(x):
   return x  #finally, we return the sorted array
 
 print(selectionSort2(arr))
-
