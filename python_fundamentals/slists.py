@@ -1,91 +1,83 @@
-# 1
 class Node:
-      def __init__(self, value):
-    self.value = value
-    self.next = None
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
 
 class SList:
-  def __init__(self,value):
-    node = Node(value)
-    self.head = node
+    def __init__(self, value):
+        node = Node(value)
+        self.head = node
 
-  def addNode(self,value):
-    node = Node(value)
-    runner = self.head
-    while runner.next != None:
-      runner = runner.next
-    runner.next = node
+    def addNode(self, value):
+        node = Node(value)
+        runner = self.head
+        while runner.next != None:
+            runner = runner.next
+        runner.next = node
 
-  def printAllValues(self):
-    runner = self.head
-    while runner.next != None:
-      print(runner.value)
-      runner = runner.next
-    print(runner.value)
+        return self
 
-datlist = SList(0)
-datlist.addNode(4)
-datlist.addNode(123)
-datlist.addNode(2103194183491)
-datlist.printAllValues()
+    def removeNode(self, value):
+        print("Removing", value, "from list")
+        print("*"*50)
+        print("New list:")
+        runner = self.head
+        if runner != None:
+            if runner.value == value:
+                self.head = runner.next
+                runner = None
+                return self
 
-# 2
-class Node:
-      def __init__(self,value):
-    self.value = value
-    self.next = None
+        while runner != None:
+            if runner.value == value:
+                break
+            prev = runner
+            runner = runner.next
+        if(runner == None):
+            return self
 
-class SList:
-  def __init__(self,value):
-    node = Node(value)
-    self.head = node
+        prev.next = runner.next
+        runner = None
 
-  def addNode(self,value):
-    node = Node(value)
-    runner = self.head
-    while runner.next != None:
-      runner = runner.next
-    runner.next = node
+        return self
 
-  def removeNode(self, value):
-    print("Removing", value, "from list")
-    print("*"*50)
-    print("New list:")
+    def toFront(self, value):
+        node = Node(value)
 
-    # start with the head incase it is the one being removed
-    temp = self.head 
+        node.next = self.head
 
-    # if the matching node is the head, set new head to where old head was pointing
-    if temp is not None:
-        if temp.value == value: 
-            self.head = temp.next
-            temp = None
-            return
+        self.head = node
 
-    # searching for the matching node while keeping track of the previous node, so we can reassign it
-    while temp is not None: 
-        if temp.value == value: 
-            break 
-        prev = temp 
-        temp = temp.next 
+        return self
 
-    # if no value match was found, end the method
-    if(temp == None): 
-        return 
+    def insertNode(self, value, index):
+        node = Node(value)
+        runner = self.head
+        if index == 0:
+            node.next = self.head
+            self.head = node
+            return self
+        count = 0
+        while count < index-1:
+            prev = runner
+            runner = runner.next
+            count += 1
 
-    # unlinking the node to be deleted which is now contained in temp and linking the previous node with the next node. Essentially "drops" the matching node.
-    prev.next = temp.next 
+        node.next = prev.next
+        prev.next = node
 
-    # reset temp
-    temp = None    
-    
+        return self
 
-  def printAllValues(self):
-    runner = self.head
-    while runner.next != None:
-      print(runner.value)
-      runner = runner.next
-    print(runner.value)
+    def printAllValues(self):
+        runner = self.head
+        while runner.next != None:
+            print(runner.value)
+            runner = runner.next
+        print(runner.value)
+
+        return self
+
 
 datlist = SList(0)
 datlist.addNode(1)
@@ -93,9 +85,5 @@ datlist.addNode(2)
 datlist.addNode(3)
 datlist.addNode(4)
 datlist.removeNode(3)
+datlist.insertNode(4444554, 2)
 datlist.printAllValues()
-
-
-
-
-
