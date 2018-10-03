@@ -51,11 +51,11 @@ class SList:
     print("Removing", value, "from list")
     print("*"*50)
     print("New list:")
+
     # start with the head incase it is the one being removed
     temp = self.head 
 
-    # if the matching node is the head, set new head to where old head was pointing
-    if temp is not None: 
+    if temp is not None:     # if the matching node is the head, set new head to where old head was pointing
         if temp.value == value: 
             self.head = temp.next
             temp = None
