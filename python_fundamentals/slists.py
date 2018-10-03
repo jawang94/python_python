@@ -55,7 +55,8 @@ class SList:
     # start with the head incase it is the one being removed
     temp = self.head 
 
-    if temp is not None:     # if the matching node is the head, set new head to where old head was pointing
+    # if the matching node is the head, set new head to where old head was pointing
+    if temp is not None:
         if temp.value == value: 
             self.head = temp.next
             temp = None
