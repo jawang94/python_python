@@ -1,13 +1,34 @@
-from flask import Flask  # Import Flask to allow us to create our app.
-app = Flask(__name__)    # Global variable __name__ tells Flask whether or not we are running the file
-                         # directly, or importing it as a module.
-print(__name__)          # Just for fun, print __name__ to see what it is
-@app.route('/')          # The "@" symbol designates a "decorator" which attaches the following
-                         # function to the '/' route. This means that whenever we send a request to
-                         # localhost:5000/ we will run the following "hello_world" function.
+from flask import Flask, render_template 
+app = Flask(__name__)
+
+print(__name__)
+
+@app.route('/')
 def hello_world():
-    return 'Hello World!'  # Return the string 'Hello World!' as a response.
-if __name__=="__main__":   # If __name__ is "__main__" we know we are running this file directly and not importing
-                           # it from a different module
-    app.run(debug=True)    # Run the app in debug mode.
+    return render_template('index.html')
+
+@app.route('/success')
+def success():
+    return render_template('success.html')
+
+@app.route('/dojo')
+def dojo():
+    return render_template('dojo.html')
+
+@app.route('/jamaica')
+def jamaica():
+    return render_template('jamaica.html')
+
+@app.route('/say/<name>')
+def say(name):
+    return "Hi "+name
+
+@app.route('/repeat/<num>/<word>')
+def hello(num,word):
+    return word*int(num)
+
+if __name__=="__main__":
+    app.run(debug=True)
+
+
 
