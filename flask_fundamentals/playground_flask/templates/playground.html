@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playground</title>
+    <style>
+        #wrapper {
+            width: 60%;
+            height: auto;
+            padding: 0 0 0 0%;
+            outline: 1px solid pink;
+        }
+        h1 {
+            font-family:sans-serif;
+            font-size: 40px;
+            margin: 0 0 1% 36%;
+        }
+        .box {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background-color: {{box_color}};
+            margin: 1%;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Welcome!</h1>
+        {% for boxes in range(0,times) %}
+        <div class="box"></div>
+        {% endfor %}
+    </div>
+</body>
+</html>
