@@ -9,12 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
     <script>
         $(document).ready(function () {
-            var box = 1;
             for (var r = 0; r < 8; r++) {
                 var col = "";
                 for (var c = 0; c < 8; c++) {
-                    col += "<td data-pos='" + box + "'></td>";
-                    box++;
+                    col += "<td></td>";
                 }
                 $("#board").append("<tr>" + col + "</tr>");
             }
