@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success!</title>
+    <style>
+        body {
+            padding: 10px;
+        }
+        .wrapper {
+            border: 5px solid black;
+            padding: 0px 20px 20px 20px;
+            width: 400px;
+        }
+        h1 {
+            text-decoration: underline;
+        }
+        p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        button {
+            border-radius: 10px;
+            background:lightcyan;
+            width: 100px;
+            height: 40px;
+            font-size: 20px;
+            font-weight: 500;
+            margin-left: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Submitted Info</h1>
+        <p>Name: {{request.form['name']}}</p>
+        <p>Dojo Location: {{request.form['location']}}</p>
+        <p>Favorite Language: {{request.form['language']}}</p>
+        <p>Comment: {{request.form['comment']}}</p>
+        <button type="button" onclick="window.location.href='/'">Go back</button>
+    </div>
+</body>
+
+</html>
