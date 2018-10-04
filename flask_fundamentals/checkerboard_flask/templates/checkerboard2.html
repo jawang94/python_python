@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkerboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
+    <script>
+        $(document).ready(function () {
+            var box = 1;
+            for (var r = 0; r < {{y}}; r++) {
+                var col = "";
+                for (var c = 0; c < {{x}}; c++) {
+                    col += "<td data-pos='" + box + "'></td>";
+                    box++;
+                }
+                $("#board").append("<tr>" + col + "</tr>");
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #board {
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        #board tr td {
+            width: 60px;
+            height: 60px;
+            background: red;
+        }
+
+        #board tr:nth-child(2n) td:nth-child(2n+1) {
+            background: black;
+        }
+
+        #board tr:nth-child(2n+1) td:nth-child(2n) {
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="board"></div>
+</body>
+
+</html>
