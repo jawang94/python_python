@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Great Number Game</title>
+    <style>
+        * {
+            background-color:whitesmoke;
+        }
+    h1 {
+        margin: 20% 0 0 50%;
+        font-size: 50px;
+        color:cornflowerblue;
+    }
+    h2 {
+        margin: 0 0 0 50%;
+        color:coral;
+    }
+    button {
+        margin: 5px 5px 5px 50%;
+        width: 100px;
+        height: 50px;
+        font-size: 15px;
+        border: 5px solid black;
+        background-color: white;
+    }
+    .box {
+        margin: 10px 10px 10px 50%;
+        height: 30px;
+        background-color: white;
+    }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TO THE GREAT NUMBER GAME!</h1>
+    <h2>I am thinking of a number between 1 and 100</h2>
+    <h2>Take a guess!</h2>
+    <form action="/submit" method="post">
+        <input type="text" name="guess" class="box" placeholder="Any number 1 to 100">Pick a number bro</button>
+        <button type="submit" class="submit">Submit</button>
+    </form>
+</body>
+</html>
