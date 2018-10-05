@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Counter</title>
+    <style>
+    h1 {
+        margin: 20% 0 0 48%;
+        font-size: 50px;
+    }
+    h2 {
+        margin: 0 0 0 50.7%;
+    }
+    button {
+        margin: 5px 5px 5px 50.5%;
+        width: 100px;
+        height: 50px;
+        font-size: 15px;
+        border: 5px solid black;
+    }
+    .add_two {
+        background-color: greenyellow;
+    }
+    .clear {
+        background-color: red;
+    }
+    </style>
+</head>
+<body>
+    <h1>Counter</h1>
+    <h2>Count: {{total_visits}}</h2>
+    <form action="/plustwo">
+        <button type="submit" class="add_two">Add two visits!</button>
+    </form>
+    <form action="/clear">
+        <button type="submit" class="clear">Clear</button>
+    </form>
+
+</body>
+</html>
