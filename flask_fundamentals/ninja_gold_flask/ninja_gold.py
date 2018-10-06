@@ -6,7 +6,7 @@ app.secret_key = 'supersecret'
 def index():
     if 'message' not in session:
         session['message'] = ""
-    if len(session['message']) > 200:
+    if len(session['message']) > 250:
         session['message'] = ""
     return render_template("ninja_gold.html",message=session['message'],total=session['total'])
 
@@ -29,7 +29,7 @@ def processgold():
         if x >= 0:
             session['message'] += "Entered a casino and earned " + str(x) + " coins! Lucky!<br>" 
         elif x < 0:
-            session['message'] += "Entered a casino and lost " + str(x) + " coins! Uh oh!<br>" 
+            session['message'] += "Entered a casino and lost " + str(abs(x)) + " coins! Uh oh!<br>" 
     if 'total' not in session:
         session['total'] = 0
     else:

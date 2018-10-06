@@ -41,7 +41,7 @@
     border: 3px solid black;
 }
 
-#menu .option button {
+#menu .option .submit {
     width: 100px;
     height: 30px;
     background-color: gold;
@@ -56,6 +56,6 @@
 #activity p {
     display: block;
     outline: 3px solid black;
-    height: 100px;
+    height: 150px;
     width: 100%;
 }
