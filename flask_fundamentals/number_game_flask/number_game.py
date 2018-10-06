@@ -9,16 +9,17 @@ def main():
 @app.route('/submit', methods=["post"])
 def submit():
     import random
-    x = random.randrange(0, 101) 
+    if 'x' not in session:
+        session['x'] = random.randrange(0, 101)
     guess = request.form['guess']
     session['result'] = ""
     session['bgrcolor'] = ""
     if len(guess) == 0:
         flash("Please enter a number!")
         return redirect("/")
-    if x == int(guess):
+    if session['x'] == int(guess):
         return redirect("/correct")
-    elif x > int(guess):
+    elif session['x'] > int(guess):
         return redirect("/toolow")
     else:
         return redirect("/toohigh")

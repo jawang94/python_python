@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .first_name {
+            color: darkblue;
+        }
+        .last_name {
+            color:brown;
+        }
+        .email {
+            color: orange;
+        }
+        .password {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>World's most amazing registration form</h1>
+    <!--Advanced Validation Example-->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <form action='/process' , method='post'>
+        <label for="first_name">First Name</label>
+        <input type="name" name="first_name" placeholder="First name">
+        <label for="last_name">Last Name</label>
+        <input type="name" name="last_name" placeholder="Last name">
+        <label for="email">Email</label>
+        <input name="email" type="text" placeholder="Enter your Email Address">
+        <label for="bday">Birthday</label>
+        <input type="date" name="bday" max="10/06/2018" placeholder="MM/DD/YYYY">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="Enter password">
+        <label for="password_confirmation">Confirm Password</label>
+        <input type="password" name="password_confirmation" placeholder="Confirm password">
+        <button>Submit</button>
+
+    </form>
+</body>
+
+</html>
