@@ -17,6 +17,9 @@ def submitform():
     if len(name) == 0:
         flash("Please enter a name!")
         return redirect('/')
+    if len(name) < 121:
+        flash("Name is too long!")
+        return redirect('/')
     return render_template("dojo_survey_results.html")
 
 
