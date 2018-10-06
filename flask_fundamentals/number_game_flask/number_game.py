@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, request
+from flask import Flask, render_template, session, redirect, request, flash
 app = Flask(__name__)
 app.secret_key = 'datsecret' 
 
@@ -13,6 +13,9 @@ def submit():
     guess = request.form['guess']
     session['result'] = ""
     session['bgrcolor'] = ""
+    if len(guess) == 0:
+        flash("Please enter a number!")
+        return redirect("/")
     if x == int(guess):
         return redirect("/correct")
     elif x > int(guess):

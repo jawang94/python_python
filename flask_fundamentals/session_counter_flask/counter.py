@@ -4,6 +4,8 @@ app.secret_key = 'notsosecret'
 
 @app.route("/")
 def main():
+    if 'visits' not in session:
+        session['visits'] = 0
     if session['visits'] != 0:
         session['visits'] += 1
     else:
