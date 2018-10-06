@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ninja_gold.css') }}">
+
+</head>
+<body>
+    <div id="wrapper">
+        <div id="top">
+            <h3>Your gold:</h3>
+            <p>{{total}}</p>
+        </div>
+        <div id="menu">
+            <div class="option">
+                <h1>Farm</h1>
+                <h2>(earns 10-20 golds)</h2>
+                <form action="/process_gold" method="post">
+                    <input type="hidden" name="building" value="farm" />
+                    <input type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+            <div class="option">
+                <h1>Cave</h1>
+                <h2>(earns 5-10 golds)</h2>
+                <form action="/process_gold" method="post">
+                    <input type="hidden" name="building" value="cave" />
+                    <input type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+            <div class="option">
+                <h1>House</h1>
+                <h2>(earns 2-5 golds)</h2>
+                <form action="/process_gold" method="post">
+                    <input type="hidden" name="building" value="house" />
+                    <input type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+            <div class="option">
+                <h1>Casino</h1>
+                <h2>(earns/takes 0-50 golds)</h2>
+                <form action="/process_gold" method="post">
+                    <input type="hidden" name="building" value="casino" />
+                    <input type="submit" value="Find Gold!"/>
+                </form>
+            </div>
+        </div>
+        <div id="activity">
+            <h4>Activities:</h4>
+            <p>{{ message|safe }}</p>
+        </div>
+    </div>
+</body>
+</html>
