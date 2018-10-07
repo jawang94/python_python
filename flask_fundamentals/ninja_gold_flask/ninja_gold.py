@@ -4,6 +4,8 @@ app.secret_key = 'supersecret'
 
 @app.route('/')         
 def index():
+    if 'total' not in session:
+        session['total'] = 0
     if 'message' not in session:
         session['message'] = ""
     if len(session['message']) > 250:
@@ -34,7 +36,6 @@ def processgold():
         session['total'] = 0
     else:
         session['total'] = session.get('total') + x
-
     return redirect("/")
 
 
