@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <title>Friends Database</title>
+</head>
+
+<body>
+    <form action="/submit" method="POST">
+        <div class="container">
+            <h2>All my friends!</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Occupation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key in friends %}
+                    <tr>
+                        <td>{{key['first_name']}}</td>
+                        <td>{{key['last_name']}}</td>
+                        <td>{{key['occupation']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <h1>Add a friend</h1>
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" placeholder="First Name" class="input">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" placeholder="Last Name" class="input">
+                <label for="occupation">Occupation</label>
+                <input type="text" name="occupation" placeholder="Occupation" class="input">
+                <input type="submit" value="Submit" class="submit">
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+        </div>
+    </form>
+</body>
+
+</html>
