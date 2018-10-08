@@ -1,41 +1,90 @@
-from flask import Flask, render_template, request, session, flash, redirect
-from mysqlconnection import connectToMySQL
-app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+<!DOCTYPE html>
+<html lang="en">
 
-@app.route('/')
-def index():
-    mysql = connectToMySQL("friendsdb")
-    all_friends = mysql.query_db("SELECT first_name,last_name,occupation FROM friends")
-    print("Fetched all friends", all_friends)
-    return render_template('index.html', friends=all_friends)
-    
-@app.route("/submit", methods=["POST"])
-def submit():
-    mysql = connectToMySQL("friendsdb")
-    query = "INSERT INTO friends (first_name, last_name, occupation, created_at, updated_at) VALUES (%(first_name)s, %(last_name)s, %(occupation)s, NOW(), NOW());"
-    data = {
-             'first_name': request.form['first_name'],
-             'last_name':  request.form['last_name'],
-             'occupation': request.form['occupation']
-           }
-    if len(request.form['first_name']) < 1:
-        flash('Please enter a first name.')
-    if len(request.form['first_name']) < 1:
-        flash('Please enter a first name.')
-    if len(request.form['last_name']) < 1:
-        flash('Please enter a last name.')
-    if len(request.form['occupation']) < 1:
-        flash('Please enter an occupation.')
-    if '_flashes' in session.keys():
-        return redirect("/")
-    else:
-        flash('Success!')
-    new_friend_id = mysql.query_db(query, data)
-    return redirect('/')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Datepicker -->
+    <link href='bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
+    <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+    <!-- Canvas -->
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <title>Customers and Leads Database</title>
+    <script>
+        window.onload = function () {
+        var options = {
+            title: {
+                text: "Customers and Number of New Leads"
+            },
+            subtitles: [{
+                text: "As of October, 2018"
+            }],
+            animationEnabled: true,
+            data: [{
+                type: "pie",
+                startAngle: 40,
+                toolTipContent: "<b>{label}</b>: {y}%",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - {y}%",
+                dataPoints: [
+                    { y: 35, label: "Michael Choi" },
+                    { y: 34, label: "Joe Smith" },
+                    { y: 32, label: "John Supsupin" },
+                    { y: 32, label: "Ryan Owen" },
+                    { y: 30, label: "Toni Rose Panganiban" },
+                    { y: 22, label: "Tom Owen" },
+                    { y: 21, label: "Masaki Fujimuto" },
+                    { y: 20, label: "Diana Sue Manlulu" }
+                ]
+            }]
+        };
+        $("#chartContainer").CanvasJSChart(options);
+        }
+        </script>
+</head>
 
-if __name__ == "__main__":
-    app.run(debug=True)
+<body>
 
+        <div class="container">
+            <h2>Customers and Leads</h2>
+            <table class="table table-bordered"id="customer_table">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Number of Leads</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in customers %}
+                    <tr>
+                        <td class="customer_name" id="t1">{{item['first_name']}} {{item['last_name']}}</td>
+                        <td class="customer_leads" id="t2">{{item['leads']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+        </div>
+    </form>
 
+</body>
 
+</html>
