@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register and Login</title>
+</head>
+
+<body>
+    <h1>Register Yoself!</h1>
+    <form action="/register" method="POST">
+        First Name: <input type="text" name="first_name" value="">
+        Last Name: <input type="text" name="last_name" value="">
+        Email: <input type="text" name="email" value="">
+        Password: <input type="text" name="password" value="">
+        Confirm Password: <input type="text" name="confirm_password" value="">
+        <input type="submit" value="Reserve a seat" class="blue">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+    </form>
+    <h1>Log Yoself In!</h1>
+    <form action="/login" method="POST">
+    Email: <input type="text" name="login_email" value="">
+    Password: <input type="text" name="login_password">
+    <input type="submit" value="Login" class="blue">
+    </form>
+</body>
+
+</html>

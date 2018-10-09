@@ -4,10 +4,7 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
 @app.route('/')
-def index():
-    mysql = connectToMySQL("friendsdb")
-    all_friends = mysql.query_db("SELECT first_name,last_name,occupation FROM friends")
-    print("Fetched all friends", all_friends)
+def index():)
     return render_template('index.html', friends=all_friends)
     
 @app.route("/submit", methods=["POST"])
