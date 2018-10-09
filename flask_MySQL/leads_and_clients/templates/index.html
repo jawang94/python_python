@@ -49,7 +49,7 @@
             }]
         };
         $("#chartContainer").CanvasJSChart(options);
-        }
+        };
         </script>
 </head>
 
@@ -67,8 +67,8 @@
                 <tbody>
                     {% for item in customers %}
                     <tr>
-                        <td class="customer_name" id="t1">{{item['first_name']}} {{item['last_name']}}</td>
-                        <td class="customer_leads" id="t2">{{item['leads']}}</td>
+                        <td class="customer_name" class="t1">{{item['first_name']}} {{item['last_name']}}</td>
+                        <td class="customer_leads" class="t2">{{item['leads']}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
