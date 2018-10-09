@@ -5,6 +5,9 @@ app.secret_key = 'supersecretkey'
 
 @app.route('/')
 def index():)
+    mysql = connectToMySQL("friendsdb")
+    all_friends = mysql.query_db("SELECT * FROM friends")
+    print("Fetched all friends", all_friends)
     return render_template('index.html', friends=all_friends)
     
 @app.route("/submit", methods=["POST"])

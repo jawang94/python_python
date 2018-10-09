@@ -47,11 +47,13 @@
     text-decoration: underline;
 }
 .wall .received_messages td {
-    margin-left: 10%;
+    margin: 10%;
+    font-size: 20px;
+    padding: 10px;
 }
 .wall .send_messages {
     display: inline-block;
-    width: 35%;
+    width: 40%;
     height: 600px;
     margin: -30% 0 0 40%;
     padding: 0 10% 10% 10%;

@@ -21,13 +21,14 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>X Message(s) for you {{name}}</th>
+                            <th>{{count}} Message(s) for you {{name}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for key in friends %}
+                        {% for key in all_messages %}
                         <tr>
-                            <td>{{key['first_name']}}</td>
+                            <td>{{key['first_name']}} said on {{key['created_on']}}</td>
+                            <td>{{key['message']}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -35,7 +36,7 @@
             </div>
             <div class="send_messages">
                 <h1>Send a message</h1>
-                <p>You have sent a total of X messages so far</p>
+                <p>You have sent a total of {{sent}} messages so far</p>
                 <form action="/sendmessage" class="form" method="POST">
                     <label for="message" class="label">Jason</label>
                     <textarea name="message" class="message" cols="30" rows="10"></textarea>
@@ -60,17 +61,15 @@
                     <input type="hidden" name="recipient_id" value="4">
                     <input type="submit" value="Send" class="submit">
                 </form>
-
-
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="margin: 0 0 0 33%;">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </div>
         </div>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <p style="margin: 0 0 0 33%;">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
     </div>
 </body>
 

@@ -74,12 +74,18 @@ def loggedin():
     data = {"userid": session['userid']}
     result = mysql.query_db(query, data)
     session['username'] = result[0]['first_name']
-    return render_template("loggedin.html",name=session['username'])
+    query2 = "SELECT messages.user_id as sent_from_id,users2.first_name,messages.recipient_id as sent_to_id,users.first_name,messages.message,messages.created_on FROM users JOIN messages ON users.user_id = messages.recipient_id JOIN users as users2 ON messages.user_id = users2.user_id WHERE messages.recipient_id = %(userid)s;"
+    result2 = mysql.query_db(query2, data)
+    query3 = "SELECT count(message) as messages_received FROM messages WHERE messages.recipient_id = %(userid)s;"
+    result3 = mysql.query_db(query3, data)
+    query4 = "SELECT count(message) as messages_sent FROM messages WHERE messages.user_id = %(userid)s;"
+    result4 = mysql.query_db(query4, data)
+    return render_template("loggedin.html",name=session['username'],all_messages=result2,count=result3[0]['messages_received'],sent=result4[0]['messages_sent'])
 
 @app.route("/sendmessage", methods=['POST'])
 def sendmessage():
     mysql = connectToMySQL("simple_wall")
-    query = "INSERT INTO messages (message, user_id, recipient_id, created_on) VALUES (%(message)s, %(user_id)s, %(recipient_id)s, NOW()));"
+    query = "INSERT INTO messages (message, user_id, recipient_id, created_on) VALUES (%(message)s, %(user_id)s, %(recipient_id)s, NOW());"
     data = {"message": request.form['message'],
             "user_id": session['userid'],
             "recipient_id": request.form['recipient_id']
