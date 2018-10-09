@@ -36,12 +36,17 @@ def register():
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     mysql = connectToMySQL("simple_wall")
     query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password_hash)s);"
+    query2 = "SELECT email FROM users WHERE email = %(email)s;"
     data = {"first_name": request.form['first_name'],
             "last_name": request.form['last_name'],
             "email": request.form['email'],
             "password_hash": pw_hash
             }
-
+    result2 = mysql.query_db(query2, data)
+    if result2 != False:
+        flash("This email is already in use!")
+    if '_flashes' in session.keys():
+        return redirect("/")
     new_user_id = mysql.query_db(query, data)
     return redirect("/success")
 

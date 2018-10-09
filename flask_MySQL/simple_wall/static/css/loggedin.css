@@ -6,7 +6,6 @@
     width: 100%;
     border-bottom: 5px solid black;
     margin-bottom: -100px;
-    background-color: blanchedalmond;
 }
 .topbar h1 {
     display: inline-block;
@@ -35,12 +34,12 @@
     width: 100%;
     height: 100%;
     padding: 2%;
-    background-color: aliceblue;
 }
 .wall .received_messages {
     display: inline-block;
     width: 33%;
     height: 600px;
+    border: 1px solid black;
 }
 .wall .received_messages th {
     font-size: 20px;
@@ -74,6 +73,7 @@
     height: 50px;
     width: 65%;
     margin: 10% 1% 0 0;
+    border: 3px solid black;
 }
 .wall .send_messages .label {
     display: inline-block;
@@ -84,6 +84,7 @@
 }
 .wall .send_messages .submit {
     display: inline-block;
-    height: 50px;
+    height: 30px;
     width: 100px;
+    border-radius: 10px;
 }
