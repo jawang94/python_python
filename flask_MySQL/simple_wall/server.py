@@ -85,7 +85,9 @@ def loggedin():
     result3 = mysql.query_db(query3, data)
     query4 = "SELECT count(message) as messages_sent FROM messages WHERE messages.user_id = %(userid)s;"
     result4 = mysql.query_db(query4, data)
-    return render_template("loggedin.html",name=session['username'],all_messages=result2,count=result3[0]['messages_received'],sent=result4[0]['messages_sent'])
+    query5 = "SELECT * FROM users;"
+    result5 = mysql.query_db(query5, data)
+    return render_template("loggedin.html",name=session['username'],all_messages=result2,count=result3[0]['messages_received'],sent=result4[0]['messages_sent'],all_users=result5)
 
 @app.route("/sendmessage", methods=['POST'])
 def sendmessage():

@@ -37,30 +37,14 @@
             <div class="send_messages">
                 <h1>Send a message</h1>
                 <p>You have sent a total of {{sent}} messages so far</p>
+                {% for key in all_users %}
                 <form action="/sendmessage" class="form" method="POST">
-                    <label for="message" class="label">Jason</label>
+                    <label for="message" class="label">{{key['first_name']}}</label>
                     <textarea name="message" class="message" cols="30" rows="10"></textarea>
-                    <input type="hidden" name="recipient_id" value="1">
+                    <input type="hidden" name="recipient_id" value="{{key['user_id']}}">
                     <input type="submit" value="Send" class="submit">
                 </form>
-                <form action="/sendmessage" class="form" method="POST">
-                    <label for="message" class="label">Anna</label>
-                    <textarea name="message" class="message" cols="30" rows="10"></textarea>
-                    <input type="hidden" name="recipient_id" value="2">
-                    <input type="submit" value="Send" class="submit">
-                </form>
-                <form action="/sendmessage" class="form" method="POST">
-                    <label for="message" class="label">Michael</label>
-                    <textarea name="message" class="message" cols="30" rows="10"></textarea>
-                    <input type="hidden" name="recipient_id" value="3">
-                    <input type="submit" value="Send" class="submit">
-                </form>
-                <form action="/sendmessage" class="form" method="POST">
-                    <label for="message" class="label">Jasmine</label>
-                    <textarea name="message" class="message" cols="30" rows="10"></textarea>
-                    <input type="hidden" name="recipient_id" value="4">
-                    <input type="submit" value="Send" class="submit">
-                </form>
+                {% endfor %}
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
