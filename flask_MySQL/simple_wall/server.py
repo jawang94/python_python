@@ -19,11 +19,11 @@ def register():
         flash("Invalid Email Address!", 'email')
     if request.form['first_name'].isalpha() == False:
         flash("Name cannot contain numbers!", 'first_name')
-    elif len(request.form['first_name']) <= 2:
+    elif len(request.form['first_name']) < 2:
         flash("Name must be 2+ characters", 'first_name')
     if request.form['last_name'].isalpha() == False:
         flash("Name cannot contain numbers!", 'last_name')
-    elif len(request.form['last_name']) <= 2:
+    elif len(request.form['last_name']) < 2:
         flash("Name must be 2+ characters", 'last_name')
     if len(request.form['password']) < 1:
         flash("Password cannot be blank!", 'password')
@@ -36,15 +36,14 @@ def register():
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     mysql = connectToMySQL("simple_wall")
     query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password_hash)s);"
-    query2 = "SELECT email FROM users WHERE email = %(email)s;"
     data = {"first_name": request.form['first_name'],
             "last_name": request.form['last_name'],
             "email": request.form['email'],
             "password_hash": pw_hash
             }
+    query2 = "SELECT email FROM users WHERE email = %(email)s;"
     result2 = mysql.query_db(query2, data)
-    if result2 != True:
-        flash("This email is already in use!")
+
     if '_flashes' in session.keys():
         return redirect("/")
     new_user_id = mysql.query_db(query, data)
