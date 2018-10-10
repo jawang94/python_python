@@ -1,0 +1,11 @@
+* {
+    background-color: azure;
+    display: block;
+    padding: 5px;
+}
+label, title {
+    font-size: 30px;
+}
+h2 {
+    color: red;
+}

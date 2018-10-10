@@ -1,0 +1,16 @@
+h2 {
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    margin: 10% 0 0 40%;
+    border: 3px solid black;
+}
+p {
+    width: 300px;
+    height: auto;
+    border: 3px solid black;
+    font-size: 45px;
+    text-align: center;
+    padding: 20px;
+    margin: 1% 0 0 40%;
+}

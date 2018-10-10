@@ -42,16 +42,15 @@ def register():
             "password_hash": pw_hash
             }
     query2 = "SELECT email FROM users WHERE email = %(email)s;"
-    result2 = mysql.query_db(query2, data)
+    mysql.query_db(query2, data)
 
     if '_flashes' in session.keys():
         return redirect("/")
-    new_user_id = mysql.query_db(query, data)
+    mysql.query_db(query, data)
     return redirect("/success")
 
 @app.route("/success")
 def success():
-    mysql = connectToMySQL("simple_wall")
     return render_template("success.html")
 
 @app.route('/login', methods=['POST'])

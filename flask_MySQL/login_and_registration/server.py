@@ -12,6 +12,7 @@ bcrypt = Bcrypt(app)
 def index():
     return render_template("index.html")
 
+
 @app.route('/login', methods=['POST'])
 def login():
     mysql = connectToMySQL("login_and_registration")
@@ -19,55 +20,56 @@ def login():
     data = {"login_email": request.form["login_email"]}
     result = mysql.query_db(query, data)
     if result:
-
         if bcrypt.check_password_hash(result[0]['password'], request.form['login_password']):
-
             session['userid'] = result[0]['id']
-
             return redirect('/loggedin')
-
     flash("You could not be logged in")
     return redirect("/")
 
 
 @app.route("/register", methods=['POST'])
 def register():
+    if len(request.form['email']) < 1:
+        flash("Email cannot be blank!", 'email')
+    if not EMAIL_REGEX.match(request.form['email']):
+        flash("Invalid Email Address!", 'email')
+    if request.form['first_name'].isalpha() == False:
+        flash("Name cannot contain numbers!", 'first_name')
+    if len(request.form['first_name']) <= 2:
+        flash("Name must be 2+ characters", 'first_name')
+    if request.form['last_name'].isalpha() == False:
+        flash("Name cannot contain numbers!", 'last_name')
+    if len(request.form['last_name']) <= 2:
+        flash("Name must be 2+ characters", 'last_name')
+    if len(request.form['password']) < 1:
+        flash("Password cannot be blank!", 'password')
+    if len(request.form['password']) < 8:
+        flash("Password must be 8+ characters", 'password')
+    if request.form['password'] != request.form['confirm_password']:
+        flash("Passwords don't match!")
+    if '_flashes' in session.keys():
+        return redirect("/")
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     mysql = connectToMySQL("login_and_registration")
-    query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password_hash)s);"
-    data = {"first_name": request.form['first_name'],
+    query = """INSERT INTO users (first_name, last_name, email, password)
+               VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password_hash)s);"""
+    data = {
+            "first_name": request.form['first_name'],
             "last_name": request.form['last_name'],
             "email": request.form['email'],
             "password_hash": pw_hash
             }
-    if len(request.form['email']) < 1:
-        flash("Email cannot be blank!", 'email')
-    elif not EMAIL_REGEX.match(request.form['email']):
-        flash("Invalid Email Address!", 'email')
-    if request.form['first_name'].isalpha() == False:
-        flash("Name cannot contain numbers!", 'first_name')
-    elif len(request.form['first_name']) <= 2:
-        flash("Name must be 2+ characters", 'first_name')
-    if request.form['last_name'].isalpha() == False:
-        flash("Name cannot contain numbers!", 'last_name')
-    elif len(request.form['last_name']) <= 2:
-        flash("Name must be 2+ characters", 'last_name')
-    if len(request.form['password']) < 1:
-        flash("Password cannot be blank!", 'password')
-    elif len(request.form['password']) < 8:
-        flash("Password must be 8+ characters", 'password')
-    if '_flashes' in session.keys():
-        return redirect("/")
-    new_user_id = mysql.query_db(query, data)
+    mysql.query_db(query, data)
     return redirect("/success")
+
 
 @app.route("/loggedin")
 def loggedin():
     return render_template("loggedin.html")
 
+
 @app.route("/success")
 def success():
-    mysql = connectToMySQL("login_and_registration")
     return render_template("success.html")
 
 
