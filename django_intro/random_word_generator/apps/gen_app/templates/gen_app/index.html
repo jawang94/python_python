@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Time Display</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'gen_app/css/index.css' %}">
+
+</head>
+<body>
+    <h2>Random Word (attempt {{request.session.counter}})</h2>
+    <p>{{request.session.word}}</p>
+    <form action="/random_word/reset" method="post">
+        {% csrf_token %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
