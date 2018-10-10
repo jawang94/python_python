@@ -43,7 +43,7 @@ def register():
             "password_hash": pw_hash
             }
     result2 = mysql.query_db(query2, data)
-    if result2 != False:
+    if result2 != True:
         flash("This email is already in use!")
     if '_flashes' in session.keys():
         return redirect("/")
