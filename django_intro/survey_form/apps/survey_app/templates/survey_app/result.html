@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Time Display</title>
+    {% load static%}
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'survey_app/css/result.css' %}">
+
+</head>
+
+<body>
+    <div id="result">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{request.session.name}}</td>
+                </tr>
+                <tr>
+                    <th>Dojo Location</th>
+                    <td>{{request.session.location}}</td>
+                </tr>
+                <tr>
+                    <th>Favorite Language</th>
+                    <td>{{request.session.language}}</td>
+                </tr>
+                <tr>
+                    <th>Comment</th>
+                    <td>{{request.session.comment}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form action="/result" method="post">
+            {% csrf_token %}
+            <button type="submit">Go Back</button>
+        </form>
+    </div>
+</body>
+
+</html>
