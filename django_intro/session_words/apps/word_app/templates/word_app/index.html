@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Session Words</title>
+    {% load static%}
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'word_app/css/index.css' %}">
+
+</head>
+
+<body>
+    <div id="picker">
+        <form action="/submit" method="post">
+            {% csrf_token %}
+            <label for="word">Add a new word</label>
+            <input type="text" name="word"><br>
+            <label for="color">Choose color</label><br>
+            <input type="hidden" name="color" value="black">
+            Red<input type="radio" name="color" value="red">
+            Green<input type="radio" name="color" value="green">
+            Blue<input type="radio" name="color" value="blue"><br>
+            <label for="big">show in BIG fonts!</label>
+            <input type="hidden" name="big_font" value="15">
+            <input type="checkbox" name="big_font" value="30"><br>
+            <input type="submit" value="Add to Session" class="submit">
+        </form>
+    </div>
+    <div id="result">
+        <form action="/clear" method="post">
+            {% csrf_token %}
+            <button type="submit">Clear Session</button>
+            {% for key in request.session.words %}
+            <p style="color: {{key.color}}; font-size: {{key.show_big}}px">
+                {{key.word}} created on {{key.created_on}} <br>
+            </p>
+            {% endfor %}
+        </form>
+    </div>
+</body>
+
+</html>

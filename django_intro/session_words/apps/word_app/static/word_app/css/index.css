@@ -1,0 +1,40 @@
+
+#picker {
+    display: inline-block;
+    width: 40%;
+    height: auto;
+    border: 3px solid black;
+    padding: 3%;
+}
+#picker .submit {
+    width: 180px;
+    height: 60px;
+    background-color: skyblue;
+    font-size: 20px;
+    font-weight: 900;
+}
+#picker input {
+    margin: 5%;
+    padding: 1%;
+}
+#result {
+    display: inline-block;
+    position: absolute;
+    width: 40%;
+    height: auto;
+    border: 3px solid black;
+    padding: 3%;
+}
+#result button {
+    margin: 0 0 0 75%;
+    width: 150px;
+    height: 60px;
+    background-color: lightcoral;
+    font-size: 20px;
+    font-weight: 900;
+}
+#result p {
+    display: block;
+    font-size: 25px;
+    width: 100%;
+}
