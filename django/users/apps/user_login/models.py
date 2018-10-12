@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.exceptions import ValidationError
+# from django.core.exceptions import ValidationError
 
 class User(models.Model):
     first_name = models.CharField(max_length=200)
@@ -9,10 +9,10 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def create(self, *args, **kwargs):
-        if len(self.first_name) < 3:
-            return 'yo name is too short!'
-        else:
-        super().create(*args, **kwargs)
+    # def create(self, *args, **kwargs):
+    #     if len(self.first_name) < 3:
+    #         return 'yo name is too short!'
+    #     else:
+    #     super().create(*args, **kwargs)
 
 
