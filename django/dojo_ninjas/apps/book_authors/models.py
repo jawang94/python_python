@@ -7,6 +7,7 @@ class Author(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
 class Book(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField(max_length=1000)

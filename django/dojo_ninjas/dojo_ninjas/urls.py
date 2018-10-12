@@ -20,4 +20,5 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^', include("apps.dojo_app.urls")),
     url(r'^', include("apps.book_authors.urls")),
+    url(r'^', include("apps.books_likes.urls"))
 ]
