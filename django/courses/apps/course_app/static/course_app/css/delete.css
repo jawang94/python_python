@@ -1,0 +1,15 @@
+body {
+    margin: 10%;
+    padding: 10%;
+    border: 1px solid black;
+    text-align: center;
+}
+button {
+    background-color: rgb(34, 37, 41);
+    border: 1px solid black;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    height: 50px;
+    width: 150px;
+}

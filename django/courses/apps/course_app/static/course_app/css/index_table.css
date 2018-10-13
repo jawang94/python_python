@@ -1,0 +1,32 @@
+#result {
+    margin: 1%;
+}
+body {
+    background-color: rgb(34, 37, 41);
+}
+button {
+    background-color: rgb(34, 37, 41);
+    border: 1px solid black;
+    color: white;
+    margin: 0 0 0 45%;
+    height: 50px;
+    width: 150px;
+}
+.reducewidth {
+    width: 200px;
+}
+.action {
+    width: auto;
+    height: 40px;
+    display: inline-block;
+    padding: 0 15px 1px 15px;
+    margin: 0 100% 0 0;
+    background: rgb(34, 37, 41);
+}
+.form {
+    background-color: rgb(34, 37, 41);
+    margin: 0 0 0 0;
+    padding: 0 50px 0 0px;
+    height: auto;
+    width: 94px;
+}

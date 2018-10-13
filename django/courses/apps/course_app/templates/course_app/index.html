@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Djangolicious Courses</title>
+    {% load static%}
+    <!-- BOOTSTRAP -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'course_app/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'course_app/css/index_table.css' %}">
+    <script>
+        $(document).ready(function(){
+            $('input').focus(function(){
+              $(this).parent().find(".label-txt").addClass('label-active');
+            });
+
+            $("input").focusout(function(){
+              if ($(this).val() == '') {
+                $(this).parent().find(".label-txt").removeClass('label-active');
+              };
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="survey">
+        <form action="/process" method="POST">
+            <h2>Add a new course!</h2>
+            {% csrf_token %}
+            <label>
+                <p class="label-txt">Course Name:</p>
+                <input type="text" class="input" name="course_name">
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+            </label>
+            <label>
+                <p class="label-txt">Description</p>
+                <input type="text" class="input" name="description">
+                <div class="line-box">
+                    <div class="line"></div>
+                </div>
+            </label>
+            <button type="submit" class="create">Create</button>
+        </form>
+    </div>
+    <div id="result">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key in datakey %}
+                <tr>
+                    <th scope="row">{{key.id}}</th>
+                    <form action="/show" method="POST">
+                        {% csrf_token %}
+                        <td>{{key.course_name}}</td>
+                    </form>
+                    <td>{{key.description}}</td>
+                    <td class="reducewidth">{{key.created_at}}</td>
+                    <td>
+                        <form action="/delete" method="post" class="form">
+                            {% csrf_token %}
+                            <button type="submit" name="destroyid" value="{{key.id}}"
+                                class="action">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</html>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Are you sure?</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'course_app/css/delete.css' %}">
+</head>
+<body>
+    <h1>Are you sure you want to delete the following course?</h1>
+    {% for key in datakey %}
+    <p>Course Name: {{key.course_name}}</p>
+    <p>Description: {{key.description}}</p>
+    <form action="/destroy" method="post" class="form">
+        {% csrf_token %}
+        <button type="submit" name="destroyid" value="{{key.id}}"
+            class="action">Remove</button>
+    </form> 
+    {% endfor %}
+</body>
+</html>
