@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Showing dat user</title>
+    {% load static %}
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'first_app/css/user.css' %}">
+</head>
+
+<body>
+    {% for key in user %}
+    <form action="/edit" method="post">
+        {% csrf_token %}
+        <button type="submit" name="editid" value="{{key.id}}" class="green" onclick="window.location.href='/edit'">Edit this user</button>
+    </form>
+        <h1>User {{key.id}}</h1>
+        <h3>Full Name: {{key.first_name}} {{key.last_name}}</h3>
+        <h3>Email: {{key.email}}</h3>
+        <h3>Created at: {{key.created_at}}</h3>
+        <form action="/destroy" method="post">
+            {% csrf_token %}
+            <button type="submit" name="destroyid" value="{{key.id}}">Destroy this user</button>
+        </form>
+        {% endfor %}
+</body>
+
+</html>

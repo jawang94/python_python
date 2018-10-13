@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Djangolicious Users</title>
+    {% load static %}
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'first_app/css/result.css' %}">
+
+</head>
+
+<body>
+    <div id="result">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key in datakey %}
+                <tr>
+                    <th scope="row">{{key.id}}</th>
+                    <form action="/show" method="POST">
+                        {% csrf_token %}
+                        <td style="text-decoration: underline; color: aliceblue;"><button type="submit" value="{{key.id}}" name="user_id">{{key.first_name}} {{key.last_name}}</button></td>
+                    </form>
+                    <td>{{key.email}}</td>
+                    <td>{{key.created_at}}</td>
+                    <td><span>Show</span> <span>Edit</span> <span>Delete</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/users" method="post">
+            {% csrf_token %}
+            <button type="submit">Add a new user</button>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+#result {
+    margin: 1%;
+}
+body {
+    background-color: rgb(34, 37, 41);
+}
+button {
+    background-color: rgb(34, 37, 41);
+    border: 1px solid black;
+    color: white;
+    margin: 0 0 0 45%;
+    height: 50px;
+    width: 150px;
+}
