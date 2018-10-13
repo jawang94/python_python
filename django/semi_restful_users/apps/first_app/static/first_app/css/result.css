@@ -12,3 +12,22 @@ button {
     height: 50px;
     width: 150px;
 }
+.reducewidth {
+    width: 200px;
+}
+.wide {
+    width: 500px;
+}
+.action {
+    width: 150px;
+    height: 30px;
+    display: inline-block;
+    margin: 0 0 0 0;
+}
+.fullname {
+    margin: 0 50% 0 0;
+    height: 30px;
+    border: none;
+    text-decoration: underline;
+    color: aquamarine;
+}

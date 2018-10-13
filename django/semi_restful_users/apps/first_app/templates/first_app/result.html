@@ -32,11 +32,28 @@
                     <th scope="row">{{key.id}}</th>
                     <form action="/show" method="POST">
                         {% csrf_token %}
-                        <td style="text-decoration: underline; color: aliceblue;"><button type="submit" value="{{key.id}}" name="user_id">{{key.first_name}} {{key.last_name}}</button></td>
+                        <td><button type="submit" value="{{key.id}}" name="user_id"  class="fullname">{{key.first_name}} {{key.last_name}}</button></td>
                     </form>
                     <td>{{key.email}}</td>
-                    <td>{{key.created_at}}</td>
-                    <td><span>Show</span> <span>Edit</span> <span>Delete</span></td>
+                    <td class="reducewidth">{{key.created_at}}</td>
+                    <td  class="wide">
+                        <span>
+                            <form action="/show" method="post" class="action">
+                                {% csrf_token %}
+                                <button type="submit" name="user_id" value="{{key.id}}" onclick="window.location.href='/show'" class="action">Show</button>
+                            </form>
+
+                            <form action="/edit" method="post" class="action">
+                                {% csrf_token %}
+                                <button type="submit" name="editid" value="{{key.id}}" onclick="window.location.href='/edit'" class="action">Edit</button>
+                            </form>
+
+                            <form action="/destroy" method="post" class="action">
+                                {% csrf_token %}
+                                <button type="submit" name="destroyid" value="{{key.id}}" onclick="window.location.href='/destroy'" class="action">Delete</button>
+                            </form>
+                        </span>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
