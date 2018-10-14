@@ -16,7 +16,7 @@
     <form action="/destroy" method="post" class="form">
         {% csrf_token %}
         <button type="submit" name="destroyid" value="{{key.id}}"
-            class="action">Remove</button>
+            class="action">Yes</button>
     </form> 
     <button type="submit" onclick="window.location.href='/courses'" class="goback">No Way</button>
     {% endfor %}
