@@ -1,0 +1,27 @@
+.container {
+    border: 3px solid black;
+    background: rgb(220, 220, 220);
+    width: 500px;
+    margin: 0 0 0 25%;
+    padding: 10%;
+    text-align: center;
+}
+p {
+    font-size: 20px;
+}
+button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgb(220, 220, 220);
+    font-weight: bold;
+    color: rgb(120, 120, 120);
+    border: 3px solid black;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: ease .3s;
+}
+button:hover {
+    background: rgb(34, 37, 41);
+    color: #ffffff;
+}

@@ -1,5 +1,5 @@
 #result {
-    margin: 1%;
+    margin: 1% 1% 1% 5%;
 }
 body {
     background-color: rgb(34, 37, 41);
@@ -16,7 +16,7 @@ button {
     width: 200px;
 }
 .action {
-    width: auto;
+    width: 62px;
     height: 40px;
     display: inline-block;
     padding: 0 15px 1px 15px;
@@ -29,4 +29,12 @@ button {
     padding: 0 50px 0 0px;
     height: auto;
     width: 62px;
+}
+.dropdown {
+    display: inline-block;
+    width: 62px;
+    padding: 0 15px 1px 15px;
+    background: rgb(34, 37, 41);
+    color: white;
+    border: 1px solid black;
 }

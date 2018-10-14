@@ -2,6 +2,17 @@ body {
     background: rgb(34, 37, 41);
 }
 
+h1 {
+    color: white;
+    margin: 1% 0 -2% 0;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#result h1 {
+    margin: 0 0 2% 0;
+}
+
 form {
     width: 60%;
     margin: 60px auto;
