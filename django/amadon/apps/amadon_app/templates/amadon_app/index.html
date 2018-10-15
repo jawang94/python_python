@@ -1,95 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amadon</title>
-    {% load static%}
-    <!-- BOOTSTRAP -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- LOCAL CSS -->
-    <link rel="stylesheet" href="{% static 'amadon_app/css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'amadon_app/css/index2.css' %}">
-    <script>
-        $(document).ready(function(){
-            $('input').focus(function(){
-              $(this).parent().find(".label-txt").addClass('label-active');
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Amadon</title>
+        {% load static%}
+        <!-- BOOTSTRAP -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- LOCAL CSS -->
+        <link rel="stylesheet" href="{% static 'amadon_app/css/index.css' %}">
+        <link rel="stylesheet" href="{% static 'amadon_app/css/index2.css' %}">
+        <script>
+            $(document).ready(function(){
+                $('input').focus(function(){
+                  $(this).parent().find(".label-txt").addClass('label-active');
+                });
+    
+                $("input").focusout(function(){
+                  if ($(this).val() == '') {
+                    $(this).parent().find(".label-txt").removeClass('label-active');
+                  };
+                });
             });
-
-            $("input").focusout(function(){
-              if ($(this).val() == '') {
-                $(this).parent().find(".label-txt").removeClass('label-active');
-              };
-            });
-        });
-    </script>
-</head>
-
-<body>
-    <div id="survey">
-        <h1>WELCOME TO AMADON.COM!</h1>
-        <form action="/amadon/create" method="POST">
-            <h2>Add a new item!</h2>
-            {% csrf_token %}
-            <label>
-                <p class="label-txt">Item Name</p>
-                <input type="text" class="input" name="item_name">
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </label>
-            <label>
-                <p class="label-txt">Price</p>
-                <input type="text" class="input" name="item_price">
-                <div class="line-box">
-                    <div class="line"></div>
-                </div>
-            </label>
-            <button type="submit" class="create">Create</button>
-        </form>
-    </div>
-    <div id="result">
-        <table class="table table-dark">
-            <h1>Item List</h1>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for key in datakey %}
-                <tr>
-                    <th scope="row">{{key.id}}</th>
-                    <td>{{key.item_name}}</td>
-                    <td>${{key.item_price}}</td>
-                    <td>
-                        <form action="/amadon/process" method="post" class="form">
-                            {% csrf_token %}
-                            <select name="quantity" class="dropdown">
+        </script>
+    </head>
+    
+    <body>
+        <div id="survey">
+            <h1>WELCOME TO AMADON.COM!</h1>
+            <form action="/amadon/create" method="POST">
+                <h2>Add a new item!</h2>
+                {% csrf_token %}
+                <label>
+                    <p class="label-txt">Item Name</p>
+                    <input type="text" class="input" name="item_name">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <label>
+                    <p class="label-txt">Price</p>
+                    <input type="text" class="input" name="item_price">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <button type="submit" class="create">Create</button>
+            </form>
+        </div>
+        <div id="result">
+            <table class="table table-dark">
+                <h1>Item List</h1>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key in datakey %}
+                    <tr>
+                        <th scope="row">{{key.id}}</th>
+                        <td>{{key.item_name}}</td>
+                        <td>${{key.item_price}}</td>
+                        <td>
+                            <form action="/amadon/process" method="post" class="form">
+                                {% csrf_token %}
+                                <select name="quantity" class="dropdown">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                            </select>
-                            <button type="submit" name="itemid" value="{{key.id}}"
-                                class="action">Buy</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-</html>
-</body>
+                                </select>
+                                <button type="submit" name="itemid" value="{{key.id}}" class="action">Buy</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
 
 </html>
