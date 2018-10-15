@@ -30,14 +30,21 @@ def register(request):
 
 def validate_login(request):
     request.session['error'] = ""
-    user = User.objects.get(email=request.POST['login_email'])
-    if bcrypt.checkpw(request.POST['login_password'].encode(), user.password.encode()):
-        request.session['message'] = "logged in"
-        request.session['id'] = user.id
-        return redirect("/home/success")
-    else:
-        request.session['error'] += "Incorrect Password"
+    try:
+        User.objects.get(email=request.POST['login_email'])
+    except:
+        request.session['error'] += "Incorrect Email"
         return redirect("/home")
+    user = User.objects.get(email=request.POST['login_email'])
+    if user:
+        if bcrypt.checkpw(request.POST['login_password'].encode(), user.password.encode()):
+            request.session['message'] = "logged in"
+            request.session['id'] = user.id
+            return redirect("/home/success")
+        else:
+            request.session['error'] += "Incorrect Password"
+            return redirect("/home")
+
 
 
 def success(request):
