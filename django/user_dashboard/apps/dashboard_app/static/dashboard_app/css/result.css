@@ -1,0 +1,109 @@
+body {
+    background: rgb(34, 37, 41);
+    width: 100%;
+}
+
+* {
+    padding: 1%;
+}
+
+.top_bar {
+    display: block;
+    width: 155%;
+    height: auto;
+    border-bottom: 1px solid black;
+    margin: -15% 0 0 -3%;
+    display: block;
+    background: white;
+    color: black;
+    text-align: center;
+}
+
+.top_bar h1 {
+    display: inline-block;
+    width: auto;
+    height: 50px;
+}
+
+.top_bar h3 {
+    display: inline-block;
+    margin: 0 0 0 50%;
+    width: auto;
+    font-size: 20px;
+}
+
+.top_bar form {
+    display: inline-block;
+    width: 200px;
+}
+
+.top_bar button {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgb(220, 220, 220);
+    font-weight: bold;
+    color: rgb(120, 120, 120);
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: ease .3s;
+    width: 110px;
+    margin: 0 0 0 70%;
+}
+
+button:hover {
+    background: #8BC34A;
+    color: #ffffff;
+}
+
+
+.container {
+    color: rgb(220, 220, 220);;
+    font-family: sans-serif;
+    border-radius: 10px;
+    padding: 5%;
+    width: auto;
+    text-align: center;
+    margin: 5% 0 0 0%;
+}
+
+
+#result {
+    margin: 1%;
+}
+body {
+    background-color: rgb(34, 37, 41);
+}
+button {
+    background-color: rgb(34, 37, 41);
+    border: 1px solid black;
+    color: white;
+    margin: 0 0 0 45%;
+    height: 50px;
+    width: 150px;
+    font-weight: bold;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: ease .3s;
+}
+.reducewidth {
+    width: 200px;
+}
+.wide {
+    width: 500px;
+}
+.action {
+    width: 150px;
+    height: 30px;
+    display: inline-block;
+    margin: 0 0 0 0;
+}
+.fullname {
+    margin: 0 50% 0 0;
+    height: 30px;
+    border: none;
+    text-decoration: underline;
+    color: aquamarine;
+}
