@@ -518,12 +518,14 @@ body .no-padding {
 #box {
     margin: -5% 0 -5% 0;
     display: block;
+    font-weight: bold;
 }
 
 .comment {
     height: 50px;
     width: 100%;
     margin: 1% 0 3% 0;
+    font-weight: bold;
 }
 .comment button {
     display: inline-block;
@@ -531,4 +533,5 @@ body .no-padding {
 }
 #post_box {
     margin: 10% 0 0 0;
+    font-weight: bold;
 }
