@@ -23,17 +23,30 @@
     <div class="container" style="padding-top:30px">
         <div class="top_bar">
             <h1>One App</h1>
-            <h3>Welcome, {{datakey.first_name}}</h3>
+            {% for key in datakey %}
+            <h3>Welcome, {{key.first_name}} </h3>
+            {% endfor %}
             <form action="/home/logoff" method="POST">
                 {% csrf_token %}
                 <button>Log off</button>
             </form>
         </div>
 
+        <div class="user_desc">
+            {% for key in datakey4 %}
+            <h2>User {{key.id}}</h2>
+            <h5>Full Name: {{key.first_name}} {{key.last_name}}</h5>
+            <h5>Email: {{key.email}}</h5>
+            <h5>Created at: {{key.created_at}}</h5>
+            {% endfor %}
+        </div>
+
         <div class="row" id="box">
             <div style="margin: 0 0 0 25%;" class="col-md-6">
                 <div class="widget-area no-padding blank">
-                    <h3 style="margin: 0 0 1% 4%;">Post a message</h3>
+                    {% for key in datakey4 %}
+                    <h3 style="margin: 0 0 1% 4%;">Leave a message for {{key.first_name}}</h3>
+                    {% endfor %}
                     <div class="status-upload">
                         <form action="/home/post_message" method="POST">
                             {% csrf_token %}
@@ -86,25 +99,9 @@
             </div>
         </div>
         {% endfor %}
+        <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> < </button>
     </div>
 
 </body>
 
 </html>
-
-<!-- {% for key3 in datakey3 %}
-{% if key3.commented_id == key.id %}
-<div id="tb-testimonial" class="testimonial testimonial-default">
-    <div class="testimonial-section">
-        {{key3.comment}}
-    </div>
-    <div class="testimonial-desc">
-        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-        <div class="testimonial-writer">
-            <div class="testimonial-writer-name">{{key3.commenter.first_name}} {{key3.commenter.last_name}}</div>
-            <div class="testimonial-writer-designation">{{key3.created_at}}</div>
-        </div>
-    </div>
-</div>
-{% endif %}
-{% endfor %} -->

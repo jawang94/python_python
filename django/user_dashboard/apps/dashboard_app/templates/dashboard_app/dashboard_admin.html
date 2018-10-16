@@ -43,18 +43,18 @@
                     {% for key in datakey %}
                     <tr>
                         <th scope="row">{{key.id}}</th>
-                        <form action="/show" method="POST">
+                        <form action="/home/session_handler" method="POST">
                             {% csrf_token %}
-                            <td><button type="submit" value="{{key.id}}" name="user_id" class="fullname">{{key.first_name}}
+                            <td><button type="submit" value={{key.id}} name="user_id" class="fullname">{{key.first_name}}
                                     {{key.last_name}}</button></td>
                         </form>
                         <td>{{key.email}}</td>
                         <td class="reducewidth">{{key.created_at}}</td>
                         <td class="wide">
                             <span>
-                                <form action="/edit" method="post" class="action">
+                                <form action="/home/edit" method="post" class="action">
                                     {% csrf_token %}
-                                    <button type="submit" name="editid" value="{{key.id}}" onclick="window.location.href='/edit'"
+                                    <button type="submit" name="editid" value="{{key.id}}"
                                         class="action">Edit</button>
                                 </form>
 

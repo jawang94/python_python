@@ -42,7 +42,7 @@
 
 
         <div id="survey">
-            <form action="/process_edit" method="POST">
+            <form action="/home/process_edit" method="POST">
                 <h1>Edit User {{request.session.x}}</h1>
                 {% csrf_token %}
                 <label>
@@ -62,6 +62,36 @@
                 <label>
                     <p class="label-txt">UPDATE EMAIL</p>
                     <input type="email" class="input" name="edit3">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <button type="submit" class="update">Update</button>
+            </form>
+
+            <div class="error">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <form action="/home/process_edit_password" method="POST">
+                <h1>Edit Password {{request.session.x}}</h1>
+                {% csrf_token %}
+                    <label>
+                    <p class="label-txt">NEW PASSWORD</p>
+                    <input type="text" class="input" name="edit4">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <label>
+                    <p class="label-txt">CONFIRM NEW PASSWORD</p>
+                    <input type="email" class="input" name="edit5">
                     <div class="line-box">
                         <div class="line"></div>
                     </div>

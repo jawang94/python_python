@@ -54,6 +54,7 @@ button:hover {
     color: #ffffff;
 }
 
+
 body {
     background: rgb(34, 37, 41);
 }
@@ -167,7 +168,8 @@ ul {
 }
 
 .error {
-    margin: 2% 0 0 0;
+    margin: -5% 0 -5% 4%;
     display: block;
+    color: white;
+    text-align: center;
 }
-
