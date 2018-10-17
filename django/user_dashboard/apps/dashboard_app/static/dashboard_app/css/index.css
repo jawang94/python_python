@@ -52,7 +52,7 @@
     border-radius: 3px;
     cursor: pointer;
     transition: ease .3s;
-    width: 110px;
+    width: auto;
     margin: -5% 0 0 65%;
 }
 

@@ -18,6 +18,8 @@ class BlogManager(models.Manager):
             errors["email"] = "Email cannot be empty!"
         if not EMAIL_REGEX.match(postData['email']):
             errors['email_regex'] = "Invalid Email!"
+        if User.objects.filter(email=postData['email']):
+            errors['email_taken'] = "Email already taken."
         if len(postData['password']) < 8:
             errors['password_length'] = "Password must be 8+ characters!"
         if postData['password'] != postData['confirm_password']:

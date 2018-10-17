@@ -60,9 +60,20 @@ body {
     width: auto;
 }
 
-.topbar button:hover {
+ button:hover {
     background: #8BC34A;
     color: #ffffff;
+}
+
+h1:hover {
+    color: #8BC34A;
+    border-radius: 20px;
+    text-decoration: underline;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: ease .5s;
 }
 
 #result {
