@@ -13,11 +13,10 @@
     <!-- LOCAL CSS -->
     <link rel="stylesheet" href="{% static 'dashboard_app/css/result.css' %}">
     <script>
-        function clicked(e) {
-            if(!confirm('Are you sure?'))e.preventDefault();
-        }
-    </script>
-
+            function clicked(e) {
+                if(!confirm('Are you sure?'))e.preventDefault();
+            }
+        </script>
 </head>
 
 <body>
@@ -68,8 +67,7 @@
 
                             <form action="/home/destroy" method="post" class="action">
                                 {% csrf_token %}
-                                <button type="submit" name="destroyid" value="{{key.id}}" onclick="clicked(event)"
-                                    class="action">Delete</button>
+                                <button type="submit" name="destroyid" value="{{key.id}}" onclick="clicked(event)" class="action">Delete</button>
                             </form>
                         </span>
                     </td>

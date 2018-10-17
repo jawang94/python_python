@@ -72,18 +72,18 @@
                         <div class="testimonial-writer-designation">{{key.poster.created_at}}</div>
                     </div>
                 </div>
-                {% for key in commentkey %}
-                {% if key.commented_id == key.id %}
+                {% for key2 in commentkey %}
+                {% if key2.commented_id == key.id %}
                 <div id="tb-testimonial" class="testimonial testimonial-info-filled">
                     <div class="testimonial-section">
-                        {{key.comment}}
+                        {{key2.comment}}
                     </div>
                     <div class="testimonial-desc">
                         <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
                         <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">{{key.commenter.first_name}}
-                                {{key.commenter.last_name}}</div>
-                            <div class="testimonial-writer-designation">{{key.created_at}}</div>
+                            <div class="testimonial-writer-name">{{key2.commenter.first_name}}
+                                {{key2.commenter.last_name}}</div>
+                            <div class="testimonial-writer-designation">{{key2.created_at}}</div>
                         </div>
                     </div>
                 </div>

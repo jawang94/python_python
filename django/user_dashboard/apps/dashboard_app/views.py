@@ -5,14 +5,14 @@ import bcrypt
 
 
 def index(request):
-    if 'id' not in request.session:
+    if 'id' not in request.session or request.session['id'] == None:
         return render(request, "dashboard_app/index.html")
     else:
         user_data = User.objects.get(id=request.session['id'])
-    datdict = {
+        datdict = {
         "pk": user_data
-    }
-    return render(request, "dashboard_app/index_logged_in.html", datdict)
+        }
+        return render(request, "dashboard_app/index_logged_in.html", datdict)
 
 def to_dashboard(request):
     return redirect('/home/dashboard')
@@ -156,12 +156,16 @@ def success(request):
 
 
 def add_success(request):
-    return render(request, "dashboard_app/add_success.html")
+    user_data = User.objects.get(id=request.session['id'])
+    datdict = {
+        "datakey": user_data,
+    }
+    return render(request, "dashboard_app/add_success.html", datdict)
 
 
 def logoff(request):
     request.session['id'] = None
-    return redirect('/home/login')
+    return redirect('/home')
 
 
 def session_handler(request):
