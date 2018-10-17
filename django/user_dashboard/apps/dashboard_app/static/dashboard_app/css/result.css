@@ -1,6 +1,5 @@
 body {
     background: rgb(34, 37, 41);
-    width: 100%;
 }
 
 * {
@@ -8,28 +7,25 @@ body {
 }
 
 .top_bar {
-    display: block;
-    width: 155%;
-    height: auto;
-    border-bottom: 1px solid black;
-    margin: -15% 0 0 -3%;
-    display: block;
     background: white;
+    width: 120%;
+    height: 10%;
+    border-bottom: 1px solid black;
+    margin: -5% 0 2% -10%;
+    display: block;
     color: black;
-    text-align: center;
+    border-radius: 10px
 }
 
 .top_bar h1 {
     display: inline-block;
     width: auto;
-    height: 50px;
 }
 
 .top_bar h3 {
     display: inline-block;
-    margin: 0 0 0 50%;
+    margin: 0 0 0 45%;
     width: auto;
-    font-size: 20px;
 }
 
 .top_bar form {
@@ -39,6 +35,7 @@ body {
 
 .top_bar button {
     display: inline-block;
+    position: static;
     padding: 12px 24px;
     background: rgb(220, 220, 220);
     font-weight: bold;
@@ -48,7 +45,7 @@ body {
     border-radius: 3px;
     cursor: pointer;
     transition: ease .3s;
-    width: 110px;
+    width: 100px;
     margin: 0 0 0 70%;
 }
 
@@ -57,52 +54,50 @@ button:hover {
     color: #ffffff;
 }
 
-
-.container {
-    color: rgb(220, 220, 220);;
-    font-family: sans-serif;
-    border-radius: 10px;
-    padding: 5%;
-    width: auto;
-    text-align: center;
-    margin: 5% 0 0 0%;
-}
-
-
 #result {
     margin: 1%;
 }
+
 body {
     background-color: rgb(34, 37, 41);
 }
+
+tbody button {
+    width: auto;
+}
+
 button {
     background-color: rgb(34, 37, 41);
-    border: 1px solid black;
+    border: 2px solid black;
     color: white;
-    margin: 0 0 0 45%;
-    height: 50px;
-    width: 150px;
+    margin: -10% 0 -10% 45%;
+    height: auto;
+    width: 10%;
     font-weight: bold;
     outline: none;
     border-radius: 3px;
     cursor: pointer;
     transition: ease .3s;
 }
+
 .reducewidth {
     width: 200px;
 }
+
 .wide {
     width: 500px;
 }
+
 .action {
     width: 150px;
-    height: 30px;
+    height: auto;
     display: inline-block;
     margin: 0 0 0 0;
 }
+
 .fullname {
     margin: 0 50% 0 0;
-    height: 30px;
+    height: auto;
     border: none;
     text-decoration: underline;
     color: aquamarine;

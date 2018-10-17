@@ -34,8 +34,8 @@
 
         <div class="user_desc">
             {% for key in datakey4 %}
-            <h2>User {{key.id}}</h2>
-            <h5>Full Name: {{key.first_name}} {{key.last_name}}</h5>
+            <h2>{{key.first_name}} {{key.last_name}}</h2>
+            <h5>User: #{{key.id}}</h5>
             <h5>Email: {{key.email}}</h5>
             <h5>Created at: {{key.created_at}}</h5>
             {% endfor %}
@@ -99,7 +99,9 @@
             </div>
         </div>
         {% endfor %}
-        <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> < </button>
+        <div class="back_button">        
+            <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> < </button>
+        </div>
     </div>
 
 </body>

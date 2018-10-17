@@ -11,6 +11,7 @@
     display: block;
     background-color: white;
     text-align: center;
+    border-radius: 10px
 }
 
 .top_bar h1 {

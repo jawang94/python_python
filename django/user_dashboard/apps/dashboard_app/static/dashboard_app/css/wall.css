@@ -9,6 +9,7 @@
     margin: -5% 0 2% 0;
     display: block;
     color: black;
+    border-radius: 10px
 }
 
 .top_bar h1 {
@@ -546,8 +547,12 @@ body .no-padding {
     text-align: center;
     -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px
 }
-.goback {
-    display: inline-block;
-    margin: 0 100% 0 -15%;
+.back_button {
+    position: fixed;
+    display: block;
+    margin: 25% 0 0 -20%;
+    width: 3%;
+    height: 4%
 }

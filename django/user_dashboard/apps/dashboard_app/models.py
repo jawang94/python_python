@@ -56,6 +56,7 @@ class User(models.Model):
     password = models.CharField(('password'), max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
     objects = BlogManager()
+    user_level = models.PositiveSmallIntegerField(default=1)
 
 
 class Message(models.Model):

@@ -15,7 +15,10 @@ def dashboard(request):
         "datakey": data,
         "pk": user_data
     }
-    return render(request, "dashboard_app/dashboard_admin.html", datdict)
+    if user_data.user_level == 9:
+        return render(request, "dashboard_app/dashboard_admin.html", datdict)
+    else:
+        return render(request, "dashboard_app/dashboard_user.html", datdict)
 
 def destroy(request):
     User.objects.filter(id=request.POST['destroyid']).delete()

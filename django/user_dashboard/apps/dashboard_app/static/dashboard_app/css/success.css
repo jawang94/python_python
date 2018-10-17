@@ -10,6 +10,7 @@
     display: block;
     background: white;
     color: black;
+    border-radius: 10px
 }
 
 .top_bar h1 {
@@ -60,6 +61,10 @@ body {
     width: auto;
     text-align: center;
     margin: 5% 0 0 0%;
+}
+
+.fullname button {
+    width: 10%;
 }
 
 button {

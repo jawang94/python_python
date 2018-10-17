@@ -43,7 +43,7 @@
 
         <div id="survey">
             <form action="/home/process_edit" method="POST">
-                <h1>Edit User {{request.session.x}}</h1>
+                <h1>Edit User #{{request.session.x}}</h1>
                 {% csrf_token %}
                 <label>
                     <p class="label-txt">UPDATE FIRST NAME</p>
@@ -80,17 +80,16 @@
             </div>
 
             <form action="/home/process_edit_password" method="POST">
-                <h1>Edit Password {{request.session.x}}</h1>
                 {% csrf_token %}
                     <label>
-                    <p class="label-txt">NEW PASSWORD</p>
+                    <p class="label-txt">UPDATE PASSWORD</p>
                     <input type="text" class="input" name="edit4">
                     <div class="line-box">
                         <div class="line"></div>
                     </div>
                 </label>
                 <label>
-                    <p class="label-txt">CONFIRM NEW PASSWORD</p>
+                    <p class="label-txt">CONFIRM PASSWORD</p>
                     <input type="email" class="input" name="edit5">
                     <div class="line-box">
                         <div class="line"></div>
