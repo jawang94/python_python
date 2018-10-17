@@ -16,7 +16,7 @@
     <script>
         $(document).ready(function(){
                 $('input').focus(function(){
-                  $(this).parent().find(".lasbel-txt").addClass('label-active');
+                  $(this).parent().find(".label-txt").addClass('label-active');
                 });
     
                 $("input").focusout(function(){
@@ -31,6 +31,7 @@
 <body>
     <div class="container" style="padding-top:30px">
         <div class="top_bar">
+            <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> < </button>
             <h1>One App</h1>
             <h3> Welcome, {{pk.first_name}} </h3>
             <form action="/home/logoff" method="POST" class="topform">
@@ -89,32 +90,7 @@
                 </ul>
                 {% endif %}
             </form>
-            <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> < </button>
         </div>
-
-
-        <!-- <div id="survey">
-            <form action="/home/validate_login" method="POST">
-                <h2>Login</h2>
-                {% csrf_token %}
-                <label>
-                    <p class="label-txt">Email</p>
-                    <input type="email" class="input" name="login_email">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <label>
-                    <p class="label-txt">Password</p>
-                    <input type="password" class="input" name="login_password">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <button type="submit" class="create">Login</button>
-                <p class="error">{{request.session.error}}</p>
-            </form>
-        </div> -->
 </body>
 
 </html>

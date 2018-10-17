@@ -3,29 +3,31 @@
 }
 
 .top_bar {
-    width: auto;
+    width: 120%;
     height: 10%;
     border-bottom: 1px solid black;
-    margin: -5% 0 2% 0;
+    margin: -6% 0 2% -10%;
     display: block;
     color: black;
-    border-radius: 10px
 }
 
 .top_bar h1 {
     display: inline-block;
     width: auto;
+    padding: 1%;
+    margin: 0 0 0 3%;
 }
 
 .top_bar h3 {
     display: inline-block;
-    margin: 0 0 0 45%;
+    margin: 0 0 0 54%;
     width: auto;
+    font-size: 20px;
 }
 
 .top_bar form {
     display: inline-block;
-    width: 200px;
+    width: auto;
 }
 
 button {
@@ -41,7 +43,7 @@ button {
     cursor: pointer;
     transition: ease .3s;
     width: 100px;
-    margin: 0 0 0 70%;
+    margin: 0 0 0 10%;
 }
 
 button:hover {
@@ -549,10 +551,8 @@ body .no-padding {
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     border-radius: 10px
 }
-.back_button {
-    position: fixed;
-    display: block;
-    margin: 25% 0 0 -20%;
-    width: 3%;
-    height: 4%
+.goback {
+    display: inline-block;
+    margin: 0 0 0 -1%;
+    width: auto;
 }

@@ -145,10 +145,10 @@ def wall(request):
     comment_data = Comment.objects.all()
     wall_data = User.objects.filter(id=request.session['user_id'])
     master_dict = {
-        "datakey": user_data,
-        "datakey2": message_data,
-        "datakey3": comment_data,
-        "datakey4": wall_data,
+        "userkey": user_data,
+        "wallkey": wall_data,
+        "messagekey": message_data,
+        "commentkey": comment_data,
     }
     return render(request, "dashboard_app/wall.html", master_dict)
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+    {% load static %}
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/result.css' %}">
+    <script>
+        function clicked(e) {
+            if(!confirm('Are you sure?'))e.preventDefault();
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container" style="padding-top:30px">
+        <div class="top_bar">
+            <h1>One App</h1>
+            <h3>Welcome, {{pk.first_name}}</h3>
+            <form action="/home/logoff" method="POST">
+                {% csrf_token %}
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <form action="/home/add_new" method="post">
+        {% csrf_token %}
+        <button type="submit" class="add_user">Add a new user</button>
+    </form>
+    <div id="result">
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key in datakey %}
+                <tr>
+                    <th scope="row">{{key.id}}</th>
+                    <form action="/home/session_handler" method="POST">
+                        {% csrf_token %}
+                        <td><button type="submit" value={{key.id}} name="user_id" class="fullname">{{key.first_name}}
+                                {{key.last_name}}</button></td>
+                    </form>
+                    <td>{{key.email}}</td>
+                    <td class="reducewidth">{{key.created_at}}</td>
+                    <td class="wide">
+                        <span>
+                            <form action="/home/edit" method="post" class="action">
+                                {% csrf_token %}
+                                <button type="submit" name="editid" value="{{key.id}}" class="action">Edit</button>
+                            </form>
+
+                            <form action="/home/destroy" method="post" class="action">
+                                {% csrf_token %}
+                                <button type="submit" name="destroyid" value="{{key.id}}" onclick="clicked(event)"
+                                    class="action">Delete</button>
+                            </form>
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
