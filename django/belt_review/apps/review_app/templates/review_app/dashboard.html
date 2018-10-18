@@ -9,12 +9,10 @@
     {% load static %}
     <!-- BOOTSTRAP and JQUERY -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- LOCAL CSS AND and JS -->
     <script src="{% static 'review_app/js/dashboard.js' %}"></script>
     <link rel="stylesheet" href="{% static 'review_app/css/dashboard.css' %}">
-
 </head>
 
 <body>
@@ -48,19 +46,20 @@
             <div class="col-md-6">
                 <div class="well well-sm">
                     <div class="text-right">
-                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                        <a class="btn btn-success btn-green, open-review-box" href="#reviews-anchor">Leave a Review</a>
                     </div>
-
-                    <div class="row" id="post-review-box" style="display:none;">
+                    <div class="row, post-review-box" >
                         <div class="col-md-12">
-                            <form accept-charset="UTF-8" action="" method="post">
-                                <input id="ratings-hidden" name="rating" type="hidden">
-                                <textarea class="form-control animated" cols="50" id="new-review" name="comment"
+                            <form accept-charset="UTF-8" action="/post_review" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="title" value="{{key.title}}">
+                                <input name="redirect_dashboard" type="hidden" value="True">
+                                <input class="ratings-hidden" name="rating" type="hidden">
+                                <textarea class="form-control animated, new-review" cols="50" name="review"
                                     placeholder="Enter your review here..." rows="5"></textarea>
-
                                 <div class="text-right">
                                     <div class="stars starrr" data-rating="0"></div>
-                                    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                    <a class="btn btn-danger btn-sm, close-review-box" href="#" style="display:none; margin-right: 10px;">
                                         <span class="glyphicon glyphicon-remove"></span>Cancel</a>
                                     <button class="btn btn-success btn-lg" type="submit">Save</button>
                                 </div>
@@ -72,7 +71,8 @@
         </div>
         {% endfor %}
     </div>
-    <div class="result_box">            
+
+    <div class="result_box">
         <h1>Other Books With Reviews:</h1>
         <div class="panel panel-primary" id="result_panel">
             <div class="panel-heading">
@@ -80,7 +80,7 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group">
-                    {% for key in bookkey %}
+                    {% for key in masterbookkey %}
                     <li class="list-group-item">
                         <form action="/book" method="POST" id="form">
                             {% csrf_token %}

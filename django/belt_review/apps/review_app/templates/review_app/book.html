@@ -51,6 +51,7 @@
                     {% csrf_token %}
                     <input id="ratings-hidden" name="rating" type="hidden">
                     <input type="hidden" name="title" value="{{key.title}}">
+                    <input name="redirect_dashboard" type="hidden" value="False">
                     <textarea class="form-control animated" cols="50" id="new-review" name="review" placeholder="Enter your review here..."
                         rows="5"></textarea>
                 {% endfor %}

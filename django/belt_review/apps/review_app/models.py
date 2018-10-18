@@ -54,7 +54,7 @@ class Review(models.Model):
     reviewer = models.ForeignKey(User, related_name="given_reviews")
     book = models.ForeignKey(Book, related_name="received_reviews")
     review = models.CharField(max_length=255)
-    rating = models.PositiveSmallIntegerField(default=None)
-    created_at = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)    
     objects = BlogManager()
 

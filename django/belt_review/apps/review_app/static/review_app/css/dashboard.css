@@ -65,20 +65,22 @@
     color: #d17581;
 }
 
-.review_box {
+.row {
     margin: 0 0 0 10%;
-    width: 40%;
+    width: 90%;
     display: inline-block;
 }
 .result_box {
+    position: absolute;
+    top: 12%;
+    right: 12%;
     margin: 0 0 0 0;
     display: inline-block;
-    width: 40%;
+    width: 30%;
+    height: auto;
     vertical-align: top;
     text-align: center;
 }
-
-form button {
-    width: 100%;
-    height: auto;
+.review_box h1 {
+    margin: 0 0 -3% 10%;
 }

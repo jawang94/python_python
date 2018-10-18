@@ -17,5 +17,8 @@
     border-radius: 10px;
 }
 .review_box {
-    margin: 0 0 0 30%;
+    width: 50%;
+    margin: 0 0 0 23%;
+    text-align: center;
+    vertical-align: top;
 }

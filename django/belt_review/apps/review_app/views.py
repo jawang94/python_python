@@ -12,11 +12,13 @@ def dashboard(request):
     if 'id' not in request.session:
         return redirect("/")
     user_data = User.objects.get(id=request.session['id'])
-    book_data = Book.objects.all()
+    all_book_data = Book.objects.all()
+    book_data = Book.objects.all().order_by('-updated_at')[:3]
     review_data = Review.objects.all()
     master_dict = {
         "pk": user_data,
         "bookkey": book_data,
+        "masterbookkey": all_book_data,
         "reviewkey": review_data,
     }
     return render(request, "review_app/dashboard.html", master_dict)
@@ -128,15 +130,19 @@ def book(request):
 
 
 def post_review(request):
+    print(request.POST['rating'])
     this_user = User.objects.get(id=request.session['id'])
     this_book = Book.objects.get(title=request.POST['title'])
     Review.objects.create(
         reviewer = this_user,
         book = this_book,
         review = request.POST['review'],
-        rating = request.POST['rating'],
+        rating = request.POST['rating']
     )
-    return redirect("/book")
+    if request.POST['redirect_dashboard'] == "True":
+        return redirect("/dashboard")
+    else:
+        return redirect("/book")
 
 def user(request):
     user_data = User.objects.get(id=request.session['id'])
