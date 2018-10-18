@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    {% load static %}
+    <!-- BOOTSTRAP and JQUERY -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- LOCAL CSS AND and JS -->
+    <script src="{% static 'review_app/js/dashboard.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'review_app/css/dashboard.css' %}">
+
+</head>
+
+<body>
+    <div class="container" style="padding-top:30px">
+        <div class="top_bar">
+            <h1>Review App</h1>
+            <form action="/add_book" method="POST" class="space">
+                {% csrf_token %}
+                <button>Add Book</button>
+            </form>
+            <h3>Welcome, {{pk.first_name}}</h3>
+            <form action="/logoff" method="POST">
+                {% csrf_token %}
+                <button>Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="review_box">
+        <h1>Recent Book Reviews:</h1>
+        {% for key in bookkey %}
+        <div class="row" style="margin-top:40px;">
+            <h3>{{key.title}} by {{key.author}}</h3>
+            {% for key2 in reviewkey %}
+            {% if key2.book.id == key.id %}
+            <h5>Reviewer: {{key2.reviewer.first_name}} {{key2.reviewer.last_name}}</h5>
+            <h5>Review: {{key2.review}}</h5>
+            <h5>Rating: {{key2.rating}}</h5>
+            {% endif %}
+            {% endfor %}
+            <div class="col-md-6">
+                <div class="well well-sm">
+                    <div class="text-right">
+                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                    </div>
+
+                    <div class="row" id="post-review-box" style="display:none;">
+                        <div class="col-md-12">
+                            <form accept-charset="UTF-8" action="" method="post">
+                                <input id="ratings-hidden" name="rating" type="hidden">
+                                <textarea class="form-control animated" cols="50" id="new-review" name="comment"
+                                    placeholder="Enter your review here..." rows="5"></textarea>
+
+                                <div class="text-right">
+                                    <div class="stars starrr" data-rating="0"></div>
+                                    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                        <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="result_box">            
+        <h1>Other Books With Reviews:</h1>
+        <div class="panel panel-primary" id="result_panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Result List</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% for key in bookkey %}
+                    <li class="list-group-item">
+                        <form action="/book" method="POST" id="form">
+                            {% csrf_token %}
+                            <button name="book_id" value="{{key.id}}">
+                                {{key.title}} by {{key.author}}
+                            </button>
+                        </form>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

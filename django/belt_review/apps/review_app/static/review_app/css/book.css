@@ -1,0 +1,21 @@
+.target {
+    display: inline-block;
+}
+
+.box2 {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    margin: -3% 50% 0 0%;
+}
+.review {
+    border: 1px solid black;
+    width: auto;
+    margin: 0 0 10px 0;
+    -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.review_box {
+    margin: 0 0 0 30%;
+}
