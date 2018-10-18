@@ -82,7 +82,7 @@
                 <ul class="list-group">
                     {% for key in masterbookkey %}
                     <li class="list-group-item">
-                        <form action="/book" method="POST" id="form">
+                        <form action="/session_handler" method="POST" id="form">
                             {% csrf_token %}
                             <button name="book_id" value="{{key.id}}">
                                 {{key.title}} by {{key.author}}

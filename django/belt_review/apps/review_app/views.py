@@ -110,13 +110,12 @@ def logoff(request):
     return redirect('/')
 
 
-# def session_handler(request):
-#     request.session['user_id'] = request.POST['user_id']
-#     return redirect('//wall')
+def session_handler(request):
+    request.session['book_id'] = request.POST['book_id']
+    return redirect('/book')
 
 
 def book(request):
-    request.session['book_id'] = request.POST['book_id']
     user_data = User.objects.get(id=request.session['id'])
     book_data = Book.objects.filter(id=request.session['book_id'])
     review_data = Review.objects.all()

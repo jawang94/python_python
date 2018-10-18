@@ -39,25 +39,25 @@
             <div class="col-md-6">
                 <div class="well well-sm">
                     <div class="text-right">
-                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                        <a class="btn btn-success btn-green, open-review-box" href="#reviews-anchor">Leave a Review</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" id="post-review-box" style="display:none;">
+        <div class="row, post-review-box" style="display:none;">
             <div class="col-md-12">
                 {% for key in bookkey %}
                 <form accept-charset="UTF-8" action="/post_review" method="post">
                     {% csrf_token %}
-                    <input id="ratings-hidden" name="rating" type="hidden">
+                    <input class="ratings-hidden" name="rating" type="hidden">
                     <input type="hidden" name="title" value="{{key.title}}">
                     <input name="redirect_dashboard" type="hidden" value="False">
-                    <textarea class="form-control animated" cols="50" id="new-review" name="review" placeholder="Enter your review here..."
+                    <textarea class="form-control animated, new-review" cols="50" name="review" placeholder="Enter your review here..."
                         rows="5"></textarea>
                 {% endfor %}
                     <div class="text-right">
                         <div class="stars starrr" data-rating="0"></div>
-                        <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                        <a class="btn btn-danger btn-sm, close-review-box" href="#" style="display:none; margin-right: 10px;">
                             <span class="glyphicon glyphicon-remove" value='1'></span>Cancel</a>
                         <button class="btn btn-success btn-lg" type="submit">Save</button>
                     </div>

@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^add_book$', views.add_book),
     url(r'^validate_add_book$', views.validate_add_book),
     url(r'^add_success$', views.add_success),
-    # url(r'^session_handler$', views.session_handler),
+    url(r'^session_handler$', views.session_handler),
     url(r'^book$', views.book),
     url(r'^post_review$', views.post_review),
     url(r'^user$', views.user),
