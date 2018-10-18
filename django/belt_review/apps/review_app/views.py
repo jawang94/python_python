@@ -116,8 +116,7 @@ def logoff(request):
 
 
 def book(request):
-    if 'book_id' not in request.session:
-        request.session['book_id'] = request.POST['book_id']
+    request.session['book_id'] = request.POST['book_id']
     user_data = User.objects.get(id=request.session['id'])
     book_data = Book.objects.filter(id=request.session['book_id'])
     review_data = Review.objects.all()
