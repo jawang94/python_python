@@ -1,76 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>User Home</title>
     {% load static%}
     <!-- BOOTSTRAP -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- LOCAL CSS -->
-    <link rel="stylesheet" href="{% static 'dashboard_app/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/topBar.css' %}" />
+    <!-- CSS RESET -->
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard_app/css/normalize.css' %}"
+    />
     <script>
-        $(document).ready(function(){
-                $('input').focus(function(){
-                  $(this).parent().find(".label-txt").addClass('label-active');
-                });
-    
-                $("input").focusout(function(){
-                  if ($(this).val() == '') {
-                    $(this).parent().find(".label-txt").removeClass('label-active');
-                  };
-                });
-            });
-        </script>
-</head>
+      $(document).ready(function() {
+        $("input").focus(function() {
+          $(this)
+            .parent()
+            .find(".label-txt")
+            .addClass("label-active");
+        });
 
-<body>
+        $("input").focusout(function() {
+          if ($(this).val() == "") {
+            $(this)
+              .parent()
+              .find(".label-txt")
+              .removeClass("label-active");
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
     <div class="container" style="padding-top:30px">
-        <div class="top_bar">
-            <h1>One App</h1>
-            <h3>Welcome, {{pk.first_name}}</h3>
-            <form action="/home/to_dashboard" method="POST" class="topform">
-                {% csrf_token %}
-                <button>Dashboard</button>
-            </form>
-        </div>
+      <div class="top_bar">
+        <h1>DashyBoard</h1>
+        <h3>Welcome, {{ pk.first_name }}</h3>
+        <form action="/home/logoff" method="POST">
+          {% csrf_token %} <button>Logout</button>
+        </form>
+      </div>
     </div>
 
+    <div id="survey">
+      <div id="topblock">
+        <form action="/home/to_dashboard" method="POST">
+          <h2>
+            Thanks for choosing Dashyboard! A minimalistic and elegant way to
+            leave messages for your friends, family, and colleagues. Click the
+            start button below to return to your dashboard!
+          </h2>
+          {% csrf_token %}
+          <button type="submit" class="create">Dashboard</button>
+        </form>
+      </div>
+    </div>
 
-        <div id="survey">
-            <div id ="topblock">
-                <form action="/home/register" method="POST">
-                    <h2>Welcome to the final frontier. This is where the your voyage begins. Your five-year mission: to explore strange new worlds. To seek out new life and new civilizations. To boldly go where no man has gone before!</h2>
-                    {% csrf_token %}
-                    <button type="submit" class="create">Start</button>
-                </form>
-            </div>
-        </div>
+    <div class="unit">
+      <form>
+        <h2>Manage Users</h2>
+        <ul>
+          <li>Full admin tools for moderators ~</li>
+          <li>Add, edit, or delete members at will ~</li>
+          <li>Send server wide alert messages ~</li>
+          <li>and more ~</li>
+        </ul>
+      </form>
 
-            <div class="unit">
-                <form>
-                    <h2>Manage Users</h2>
-                    <p>The first of these factors is the compelling urge of man to explore and to discover, the thrust of curiosity that leads men to try to go where no one has gone before. Most of the surface of the earth has now been explored and men now turn to the exploration of outer space as their next objective.</p>
-                </form>
+      <form>
+        <h2>Modern Messaging System</h2>
+        <ul>
+          <li>Leave fun messages for others ~</li>
+          <li>Messages don't expire until read ~</li>
+          <li>Comment on other messages ~</li>
+          <li>Post on your own wall for others to see ~</li>
+        </ul>
+        {% csrf_token %}
+      </form>
 
-                <form>
-                    <h2>Leave Messages</h2>
-                    <p>At length, sick with longing for those glittering sunset streets and cryptical hill lanes among ancient tiled roofs, nor able sleeping or waking to drive them from his mind, Carter resolved to go with bold entreaty whither no man had gone before, and dare the icy deserts through the dark to where unknown Kadath, veiled in cloud and crowned with unimagined stars, holds secret and nocturnal the onyx castle of the Great Ones.</p>
-                    {% csrf_token %}
-                </form>
-
-                <form>
-                    <h2>Edit User Information</h2>
-                    <p>On this site, a powerful engine will be built. An engine that will someday help us to travel a hundred times faster than we can today. Imagine it – thousands of inhabited planets at our fingertips... and we'll be able to explore those strange new worlds, and seek out new life and new civilizations. This engine will let us go boldly... where no man has gone before.</p>
-                    {% csrf_token %}
-                </form>
-            </div>
-
-
-</body>
-
+      <form>
+        <h2>Engaging User Platform</h2>
+        <ul>
+          <li>Take advantage of powerful profile tools ~</li>
+          <li>Customize your profile and wall ~</li>
+          <li>Control what you and others see ~</li>
+          <li>Myriad of UX widgets and attachments ~</li>
+        </ul>
+        {% csrf_token %}
+      </form>
+    </div>
+  </body>
 </html>

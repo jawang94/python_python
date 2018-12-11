@@ -1,44 +1,11 @@
-body {
-    background: rgb(34, 37, 41);
+#result {
+    vertical-align: top;
+    margin-top: 5%;
+    width: 100%;
 }
 
-* {
-    padding: 1%;
-}
-
-.top_bar {
-    display: block;
-    width: 120%;
-    height: auto;
-    border-bottom: 1px solid black;
-    margin: -7% 0 0% -10%;
-    display: block;
-    background-color: white;
-    text-align: center;
-    border-radius: 10px
-}
-
-.top_bar h1 {
+.add_user {
     display: inline-block;
-    width: auto;
-    margin: 0 0 0 3%;
-}
-
-.top_bar h3 {
-    display: inline-block;
-    margin: 0 0 0 54%;
-    width: auto;
-    font-size: 20px;
-}
-
-.top_bar form {
-    display: inline-block;
-    width: 200px;
-}
-
-.top_bar button {
-    display: inline-block;
-    padding: 12px 24px;
     background: rgb(220, 220, 220);
     font-weight: bold;
     color: rgb(120, 120, 120);
@@ -47,48 +14,10 @@ body {
     border-radius: 3px;
     cursor: pointer;
     transition: ease .3s;
-    width: 100px;
-    margin: 0 0 0 10%;
-}
-
-.topbar .goback {
-    margin: 0 0 0 -3%;
-    display: inline-block;
-}
-
-.topbar .goback button {
     width: auto;
-}
-
- button:hover {
-    background: #8BC34A;
-    color: #ffffff;
-}
-
-h1:hover {
-    color: #8BC34A;
-    border-radius: 20px;
-    text-decoration: underline;
-    border: none;
-    outline: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: ease .5s;
-}
-
-#result {
-    margin: 1%;
-}
-
-body {
-    background-color: rgb(34, 37, 41);
 }
 
 tbody button {
-    width: auto;
-}
-
-button {
     display: inline-block;
     background-color: rgb(34, 37, 41);
     border: 1px solid black;

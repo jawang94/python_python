@@ -8,12 +8,14 @@
     <title>Registration successful!</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'dashboard_app/css/success.css' %}">
+    <!-- CSS RESET -->
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/normalize.css' %}">
 </head>
 
 <body>
     <div class="container" style="padding-top:30px">
         <div class="top_bar">
-            <h1>The Wall</h1>
+            <h1>DashyBoard</h1>
             <h3>Welcome, {{datakey.first_name}}</h3>
             <form action="/home/logoff" method="POST">
                 {% csrf_token %}
@@ -26,7 +28,7 @@
             <h1>Success! Welcome, {{datakey.first_name}}!</h1>
             <h3>You have been successfully {{request.session.message}}!</h3>
             <h5>Please go back to the home page and login to your wall!</h5>
-            <button onclick="window.location.href='/home/login'">Go Back</button>
+            <button onclick="window.location.href='/home/dashboard'">To Dashboard</button>
         </div>
 </body>
 

@@ -1,107 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>User Wall</title>
     {% load static %}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- BOOTSTRAP/JQUERY -->
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="{% static 'dashboard_app/css/wall.css' %}">
+    <link
+      rel="stylesheet"
+      href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"
+    />
+    <!-- CSS RESET -->
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard_app/css/normalize.css' %}"
+    />
+    <!-- LOCAL CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/wall.css' %}" />
+    <!-- JQuery -->
     <script>
-        $(document).ready(function(){
-            $("[data-toggle=tooltip]").tooltip();
-        });
+      $(document).ready(function() {
+        $("[data-toggle=tooltip]").tooltip();
+      });
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container" style="padding-top:30px">
-        <div class="top_bar">
-            <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> << </button>
-            <h1>One App</h1>
-            {% for key in userkey %}
-            <h3>Welcome, {{key.first_name}} </h3>
-            {% endfor %}
-            <form action="/home/logoff" method="POST">
-                {% csrf_token %}
-                <button>Logout</button>
-            </form>
-        </div>
-
-        <div class="user_desc">
-            {% for key in wallkey %}
-            <h2>{{key.first_name}} {{key.last_name}}</h2>
-            <h5>User: #{{key.id}}</h5>
-            <h5>Email: {{key.email}}</h5>
-            <h5>Created at: {{key.created_at}}</h5>
-            {% endfor %}
-        </div>
-
-        <div class="row" id="box">
-            <div style="margin: 0 0 0 25%;" class="col-md-6">
-                <div class="widget-area no-padding blank">
-                    {% for key in wallkey %}
-                    <h3 style="margin: 0 0 1% 4%;">Leave a message for {{key.first_name}}</h3>
-                    {% endfor %}
-                    <div class="status-upload">
-                        <form action="/home/post_message" method="POST">
-                            {% csrf_token %}
-                            <textarea placeholder="What are you doing right now?" name="new_message"></textarea>
-                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Share</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {% for key in messagekey %}
-        <div class="col-sm-6" id="post_box">
-            <div id="tb-testimonial" class="testimonial testimonial-primary-filled">
-                <div class="testimonial-section">
-                    {{key.message}}
-                </div>
-                <div class="testimonial-desc">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                    <div class="testimonial-writer">
-                        <div class="testimonial-writer-name">{{key.poster.first_name}} {{key.poster.last_name}}</div>
-                        <div class="testimonial-writer-designation">{{key.poster.created_at}}</div>
-                    </div>
-                </div>
-                {% for key2 in commentkey %}
-                {% if key2.commented_id == key.id %}
-                <div id="tb-testimonial" class="testimonial testimonial-info-filled">
-                    <div class="testimonial-section">
-                        {{key2.comment}}
-                    </div>
-                    <div class="testimonial-desc">
-                        <img src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100" alt="" />
-                        <div class="testimonial-writer">
-                            <div class="testimonial-writer-name">{{key2.commenter.first_name}}
-                                {{key2.commenter.last_name}}</div>
-                            <div class="testimonial-writer-designation">{{key2.created_at}}</div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <form action="/home/post_comment" method="POST">
-                    {% csrf_token %}
-                    <div class="comment">
-                        <textarea name="new_comment" class="comment" cols="30" rows="10" placeholder="Respond to this message"></textarea>
-                        <input type="hidden" value={{key.id}} name="message_id">
-                        <button type="submit"> Post </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+      <div class="top_bar">
+        <button
+          type="submit"
+          onclick="window.location.href='/home/dashboard'"
+          class="goback"
+        >
+          <<
+        </button>
+        <h1>DashyBoard</h1>
+        {% for key in userkey %}
+        <h3>Welcome, {{ key.first_name }}</h3>
         {% endfor %}
+        <form action="/home/logoff" method="POST">
+          {% csrf_token %} <button>Logout</button>
+        </form>
+      </div>
+
+      <div class="user_desc">
+        {% for key in wallkey %}
+        <h2>{{ key.first_name }} {{ key.last_name }}</h2>
+        <h5>User: #{{ key.id }}</h5>
+        <h5>Email: {{ key.email }}</h5>
+        <h5>Created at: {{ key.created_at }}</h5>
+        {% endfor %}
+      </div>
+
+      <div class="row" id="box">
+        <div style="margin: 0 0 0 25%;" class="col-md-6">
+          <div class="widget-area no-padding blank">
+            {% for key in wallkey %}
+            <h3 style="margin: 0 0 1% 4%;">
+              Leave a message for {{ key.first_name }}
+            </h3>
+            {% endfor %}
+            <div class="status-upload">
+              <form action="/home/post_message" method="POST">
+                {% csrf_token %}
+                <textarea
+                  placeholder="What are you doing right now?"
+                  name="new_message"
+                ></textarea>
+                <button type="submit" class="btn btn-success green">
+                  <i class="fa fa-share"></i> Share
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% for key in messagekey %}
+      <div class="col-sm-6" id="post_box">
+        <div id="tb-testimonial" class="testimonial testimonial-primary-filled">
+          <div class="testimonial-section">{{ key.message }}</div>
+          <div class="testimonial-desc">
+            <img
+              src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100"
+              alt=""
+            />
+            <div class="testimonial-writer">
+              <div class="testimonial-writer-name">
+                {{ key.poster.first_name }} {{ key.poster.last_name }}
+              </div>
+              <div class="testimonial-writer-designation">
+                {{ key.poster.created_at }}
+              </div>
+            </div>
+          </div>
+          {% for key2 in commentkey %} {% if key2.commented_id == key.id %}
+          <div id="tb-testimonial" class="testimonial testimonial-info-filled">
+            <div class="testimonial-section">{{ key2.comment }}</div>
+            <div class="testimonial-desc">
+              <img
+                src="https://placeholdit.imgix.net/~text?txtsize=9&txt=100%C3%97100&w=100&h=100"
+                alt=""
+              />
+              <div class="testimonial-writer">
+                <div class="testimonial-writer-name">
+                  {{ key2.commenter.first_name }} {{ key2.commenter.last_name }}
+                </div>
+                <div class="testimonial-writer-designation">
+                  {{ key2.created_at }}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %} {% endfor %}
+          <form action="/home/post_comment" method="POST">
+            {% csrf_token %}
+            <div class="comment">
+              <textarea
+                name="new_comment"
+                class="comment"
+                cols="30"
+                rows="10"
+                placeholder="Respond to this message"
+              ></textarea>
+              <input type="hidden" value="{{key.id}}" name="message_id" />
+              <button type="submit">Post</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-
-</body>
-
+  </body>
 </html>

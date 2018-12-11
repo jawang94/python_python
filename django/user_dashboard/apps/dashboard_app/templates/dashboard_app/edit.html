@@ -1,104 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Edit Users</title>
     {% load static%}
     <!-- BOOTSTRAP -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- LOCAL CSS -->
-    <link rel="stylesheet" href="{% static 'dashboard_app/css/edit.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/edit.css' %}" />
+    <link rel="stylesheet" href="{% static 'dashboard_app/css/topBar.css' %}" />
+
+    <!-- CSS RESET -->
+    <link
+      rel="stylesheet"
+      href="{% static 'dashboard_app/css/normalize.css' %}"
+    />
     <script>
-        $(document).ready(function(){
-            $('input').focus(function(){
-              $(this).parent().find(".label-txt").addClass('label-active');
-            });
-
-            $("input").focusout(function(){
-              if ($(this).val() == '') {
-                $(this).parent().find(".label-txt").removeClass('label-active');
-              };
-            });
+      $(document).ready(function() {
+        $("input").focus(function() {
+          $(this)
+            .parent()
+            .find(".label-txt")
+            .addClass("label-active");
         });
-    </script>
-</head>
 
-<body>
+        $("input").focusout(function() {
+          if ($(this).val() == "") {
+            $(this)
+              .parent()
+              .find(".label-txt")
+              .removeClass("label-active");
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
     <div class="container" style="padding-top:30px">
-        <div class="top_bar">
-            <button type="submit" onclick="window.location.href='/home/dashboard'" class="goback"> << </button>
-            <h1>One App</h1>
-            <h3>Welcome, {{pk.first_name}} </h3>
-            <form action="/home/logoff" method="POST">
-                {% csrf_token %}
-                <button>Logout</button>
-            </form>
-        </div>
+      <div class="top_bar">
+        <button
+          type="submit"
+          onclick="window.location.href='/home/dashboard'"
+          class="goback"
+        >
+          <<
+        </button>
+        <h1>DashyBoard</h1>
+        <h3>Welcome, {{ pk.first_name }}</h3>
+        <form action="/home/logoff" method="POST">
+          {% csrf_token %} <button>Logout</button>
+        </form>
+      </div>
     </div>
 
+    <div id="survey">
+      <form action="/home/process_edit" method="POST">
+        <h1>Edit User #{{ request.session.x }}</h1>
+        {% csrf_token %}
+        <label>
+          <p class="label-txt">UPDATE FIRST NAME</p>
+          <input type="text" class="input" name="edit1" />
+          <div class="line-box"><div class="line"></div></div>
+        </label>
+        <label>
+          <p class="label-txt">UPDATE LAST NAME</p>
+          <input type="text" class="input" name="edit2" />
+          <div class="line-box"><div class="line"></div></div>
+        </label>
+        <label>
+          <p class="label-txt">UPDATE EMAIL</p>
+          <input type="email" class="input" name="edit3" />
+          <div class="line-box"><div class="line"></div></div>
+        </label>
+        <button type="submit" class="update">Update</button>
+      </form>
 
-        <div id="survey">
-            <form action="/home/process_edit" method="POST">
-                <h1>Edit User #{{request.session.x}}</h1>
-                {% csrf_token %}
-                <label>
-                    <p class="label-txt">UPDATE FIRST NAME</p>
-                    <input type="text" class="input" name="edit1">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <label>
-                    <p class="label-txt">UPDATE LAST NAME</p>
-                    <input type="text" class="input" name="edit2">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <label>
-                    <p class="label-txt">UPDATE EMAIL</p>
-                    <input type="email" class="input" name="edit3">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <button type="submit" class="update">Update</button>
-            </form>
+      <div class="error">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
 
-            <div class="error">
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-
-            <form action="/home/process_edit_password" method="POST">
-                {% csrf_token %}
-                    <label>
-                    <p class="label-txt">UPDATE PASSWORD</p>
-                    <input type="password" class="input" name="edit4">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <label>
-                    <p class="label-txt">CONFIRM PASSWORD</p>
-                    <input type="password" class="input" name="edit5">
-                    <div class="line-box">
-                        <div class="line"></div>
-                    </div>
-                </label>
-                <button type="submit" class="update">Update</button>
-            </form>
-        </div>
-</body>
-
+      <form action="/home/process_edit_password" method="POST">
+        {% csrf_token %}
+        <label>
+          <p class="label-txt">UPDATE PASSWORD</p>
+          <input type="password" class="input" name="edit4" />
+          <div class="line-box"><div class="line"></div></div>
+        </label>
+        <label>
+          <p class="label-txt">CONFIRM PASSWORD</p>
+          <input type="password" class="input" name="edit5" />
+          <div class="line-box"><div class="line"></div></div>
+        </label>
+        <button type="submit" class="update">Update</button>
+      </form>
+    </div>
+  </body>
 </html>

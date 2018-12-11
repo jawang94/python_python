@@ -10,12 +10,14 @@ def index(request):
     else:
         user_data = User.objects.get(id=request.session['id'])
         datdict = {
-        "pk": user_data
+            "pk": user_data
         }
         return render(request, "dashboard_app/index_logged_in.html", datdict)
 
+
 def to_dashboard(request):
     return redirect('/home/dashboard')
+
 
 def dashboard(request):
     if 'id' not in request.session:
@@ -135,7 +137,7 @@ def validate_login(request):
         User.objects.get(email=request.POST['login_email'])
     except:
         request.session['error'] += "Incorrect Email"
-        return redirect("/home/register")
+        return redirect("/home/login")
     user = User.objects.get(email=request.POST['login_email'])
     if user:
         if bcrypt.checkpw(request.POST['login_password'].encode(), user.password.encode()):
@@ -144,7 +146,7 @@ def validate_login(request):
             return redirect("/home/dashboard")
         else:
             request.session['error'] += "Incorrect Password"
-            return redirect("/home/register")
+            return redirect("/home/login")
 
 
 def success(request):
@@ -176,7 +178,7 @@ def session_handler(request):
 def wall(request):
     user_data = User.objects.filter(id=request.session['id'])
     message_data = Message.objects.filter(
-        recipient_id=request.session['user_id'])
+        recipient_id=request.session['user_id']).order_by('-updated_at')[:10]
     comment_data = Comment.objects.all()
     wall_data = User.objects.filter(id=request.session['user_id'])
     master_dict = {
